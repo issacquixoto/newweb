@@ -1,0 +1,69 @@
+@mixin button($backgroundColor, $textColor)
+{
+    color: $textColor;
+    background-color: $backgroundColor;
+
+    cursor: pointer;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    border: 0;
+
+    &:hover {
+        //background-color: darken($backgroundColor, 15%);
+
+        box-shadow: 0 -2px darken($backgroundColor, 15%) inset;
+    }
+}
+@mixin show-more-button($backgroundColor:#006fa6, $textColor:#eef5f9)
+{
+    @include button($backgroundColor, $textColor);
+    display: block;
+    border: 0;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 17px;
+
+    &:before
+    {
+        content: "";
+        background: url("/images/icon/homepage-more.png") no-repeat;
+        width: 17px;
+        height: 17px;
+        display: inline-block;
+        vertical-align: top;
+        padding-right: 10px;
+    }
+}
+@mixin large-button($backgroundColor:#2ab27b,$backgroundColor2:#2ab27b,$textColor:#fff)
+{
+    @include button($backgroundColor, $textColor);
+
+    background-image: -moz-linear-gradient(top,$backgroundColor,$backgroundColor2); /* Firefox */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, $backgroundColor), color-stop(1, $backgroundColor2)); /* Saf4+, Chrome */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=$backgroundColor, endColorstr=$backgroundColor2, GradientType='0'); /* IE*/
+    &:hover {
+        //background-image: -moz-linear-gradient(top,darken($backgroundColor, 15%),darken($backgroundColor2, 15%)); /* Firefox */
+        //background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, darken($backgroundColor, 15%)), color-stop(1, darken($backgroundColor2, 15%))); /* Saf4+, Chrome */
+        //filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=darken($backgroundColor, 15%), endColorstr=darken($backgroundColor2, 15%), GradientType='0'); /* IE*/
+
+        box-shadow: 0 2px darken($backgroundColor, 15%) inset;
+    }
+
+    display: block;
+    font-size: 20px;
+    text-transform: capitalize;
+    padding: 15px 20px;
+    border-radius: 3px;
+    font-family: roboto-regular, serif;
+}
+@mixin small-button($backgroundColor:#2ab27b,$textColor:#fff)
+{
+    @include button($backgroundColor, $textColor);
+    display: inline-block;
+    font-size: 14px;
+    padding: 5px 12px;
+    margin: 20px auto 0;
+    border-radius: 3px;
+}

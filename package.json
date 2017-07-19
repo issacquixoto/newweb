@@ -1,0 +1,21 @@
+{
+  "name": "newweb",
+  "version": "1.0.0",
+  "description": "newweb.com website",
+  "private": true,
+  "devDependencies": {
+    "bootstrap-sass": "^3.3",
+    "gridle": "^2.0.0",
+    "grunt": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-phpcs": "^0.4.0",
+    "grunt-sass": "*",
+    "jquery": "^2.1.4",
+    "node-reset-scss": "*",
+    "perfect-scrollbar": "^0.6.5",
+    "slick-carousel": "^1.5.8",
+    "time-grunt": "*",
+    "tinymce": "^4.2.5"
+  }
+}

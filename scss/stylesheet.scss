@@ -1,0 +1,32 @@
+// Disable resizing for all of our textareas.
+textarea {
+    resize: none;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+label, a, input[type=button], input[type=checkbox], input[type=radio], input[type=submit] {
+    cursor: pointer;
+}
+
+//color
+$link-color: #3aa3e3;
+
+@import "typography";
+@import "layout";
+@import "buttons";
+@import "input";
+
+// Load layout-specific SCSS
+
+@import "modules/site-heade";
+
+
+@import "pages/homepage";
+@import "pages/new-game";

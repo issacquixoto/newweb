@@ -1,0 +1,73 @@
+#homepage {
+    .left {
+        float: left;
+        width: 25%;
+
+        h2 {
+            padding: 3px 3px 4px;
+            font-size: 12px;
+            color: black;
+        }
+        ul {
+            > li {
+                border-bottom: 1px solid #eee;
+
+                a {
+                    padding: 3px 3px 4px;
+                    display: block;
+                    color: #555;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+                &.active {
+                    a {
+                        background-color: $link-color;
+                        border-radius: 3px;
+                        padding: 3px 5px 4px;
+                        color: white;
+                        text-shadow: 0 1px #666;
+                    }
+                    &:hover {
+                        a {
+                            color: white;
+                        }
+                    }
+                }
+                &:hover {
+                    a {
+                        color: $link-color;
+                    }
+                }
+            }
+        }
+    }
+    .right {
+        float: left;
+        width: 75%;
+
+        h1 {
+            margin-left: 30px;
+            font-size: 32px;
+        }
+        .box {
+            margin-left: 30px;
+            background-color: white;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+            padding: 30px;
+
+            .button {
+                @include small-button();
+                display: inline-block;
+            }
+            ul {
+                >li {
+                    list-style: circle inside;
+
+                }
+            }
+        }
+    }
+}

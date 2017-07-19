@@ -1,0 +1,18 @@
+.site-header {
+    position: relative;
+    .header-logo {
+
+    }
+    .header-login {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+
+        a {
+            @include small-button();
+            margin: 0 10px;
+        }
+    }
+}

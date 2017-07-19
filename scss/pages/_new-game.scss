@@ -1,0 +1,174 @@
+#ghead {
+    width: 800px;
+    height: 50px;
+    margin: 0 auto;
+    background: #002437;
+    position: relative;
+}
+#gbody {
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    background: black;
+    position: relative;
+}
+#gfoot {
+    width: 800px;
+    height: 100px;
+    margin: 0 auto;
+    background: #002437;
+    position: relative;
+}
+#My-bullet {
+    .bullet {
+        width: 8px;
+        height: 8px;
+        background: white;
+        position: absolute;
+        border-radius: 5px;
+        box-shadow: 0 0 5px 5px #265a88;
+
+    }
+    .fir {
+        top: 500px;
+        left: 500px;
+    }
+    .sed {
+        top: 400px;
+        left: 600px;
+    }
+}
+#enemy-bullet {
+    .bullet {
+        width: 8px;
+        height: 8px;
+        background: white;
+        position: absolute;
+        border-radius: 5px;
+        box-shadow: 0 0 5px 5px #882a27;
+    }
+}
+#enemy {
+    .brick {
+        width: 100px;
+        height: 40px;
+        position: absolute;
+        top: 100px;
+        left: 350px;
+        background: white;
+
+        &.sec {
+            top: 100px;
+            left: 150px;
+        }
+        &.hp08 {
+            background: purple;
+        }
+        &.hp07 {
+            background: blue;
+        }
+        &.hp06 {
+            background: green;
+        }
+        &.hp05 {
+            background: greenyellow;
+        }
+        &.hp04 {
+            background: yellow;
+        }
+        &.hp03 {
+            background: orange;
+        }
+        &.hp02 {
+            background: orangered;
+        }
+        &.hp01 {
+            background: red;
+        }
+    }
+}
+#player1 {
+    width: 10px;
+    height: 10px;
+    background: #009ce1;
+    position: absolute;
+    top: 500px;
+    left: 400px;
+}
+
+//调试用功能
+#keydown {
+    display: inline-block;
+    font-size: 50px;
+    line-height: 50px;
+    color: #0077aa;
+}
+#keyup {
+    display: inline-block;
+    font-size: 50px;
+    line-height: 50px;
+    color: #aa0000;
+}
+#key {
+    line-height: 30px;
+    text-align: center;
+
+    .up {
+        position: absolute;
+        bottom: 60px;
+        left: 30px;
+        border-radius: 30px;
+        width: 30px;
+        height: 30px;
+        background: greenyellow;
+    }
+    .left {
+        position: absolute;
+        bottom: 30px;
+        left: 0;
+        border-radius: 30px;
+        width: 30px;
+        height: 30px;
+        background: greenyellow;
+    }
+    .right {
+        position: absolute;
+        bottom: 30px;
+        left: 60px;
+        border-radius: 30px;
+        width: 30px;
+        height: 30px;
+        background: greenyellow;
+    }
+    .down {
+        position: absolute;
+        bottom: 0;
+        left: 30px;
+        border-radius: 30px;
+        width: 30px;
+        height: 30px;
+        background: greenyellow;
+    }
+    .keyz {
+        position: absolute;
+        bottom: 0;
+        right: 30px;
+        border-radius: 30px;
+        width: 30px;
+        height: 30px;
+        background: greenyellow;
+    }
+    .keyx {
+        position: absolute;
+        bottom: 30px;
+        right: 0;
+        border-radius: 30px;
+        width: 30px;
+        height: 30px;
+        background: greenyellow;
+    }
+    .hover {
+        background: red !important;
+        color: white !important;
+    }
+}

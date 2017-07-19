@@ -1,0 +1,30 @@
+body {
+    background: #f9f9f9;
+    font-size: 15px;
+    line-height: 24px;
+    margin: 0;
+}
+.site-body {
+    padding-top: 50px;
+}
+ul, li {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none outside;
+}
+h1, h2, h3, h4, h5, p, span, div {
+    color: #333;
+}
+a {
+    color: $link-color;
+}
+code {
+    background: #eee;
+    border: 1px solid #ccc;
+}
+pre {
+    code {
+        border: 0;
+    }
+}
