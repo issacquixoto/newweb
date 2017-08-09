@@ -2,12 +2,13 @@ const exec = require('child_process').exec;
 const fs = require('fs');
 const path = require('path');
 
-var url = 'www.smartticket.cn';
+var url = 'https://www.smartticket.cn/';
 var now = new Date();
 var date = now.getFullYear()+'-'+ now.getMonth()+'-'+now.getDate()+'-'+now.getUTCHours();
 var size = [440,1026];
 var source_file = '../../../../Users/isaac/screenshot.png';
 
+'../../../../Users/isaac/'
 
 //生成放置图片的文件夹
 
@@ -36,11 +37,16 @@ function mkdir(dirpath,name){
 }
 
 //让HeadlessChrome生成图片
+//
+// function launchHeadlessChrome(size,url,callback) {
+//     var CHROME = '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome';
+//     exec(`${CHROME} --headless --screenshot --disable-gpu --window-size=${size},1200 ${url}`, callback);
+// }
 
-function launchHeadlessChrome(size,url,callback) {
-    var CHROME = '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome';
-    exec(`${CHROME} --headless --screenshot --window-size=${size},2000 ${url}`, callback);
-    console.log('headless完成');
+function launchHeadlessChrome(url, callback) {
+    // Assuming MacOSx.
+    const CHROME = '/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome';
+    exec(`${CHROME} --headless --disable-gpu --remote-debugging-port=9222 ${url}`, callback);
 }
 
 //移动文件
@@ -68,7 +74,4 @@ function movePhoto(source_file,destination_file){
 
 
 
-
-
-
-launchHeadlessChrome(440,url);
+launchHeadlessChrome(url);

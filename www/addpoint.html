@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>加点</title>
+
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.min.css"/>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/javascript.min.js"></script>
+</head>
+<body>
+<h1>特性值</h1>
+<label for="characterRace">人物种族</label>
+<select name="race" id="characterRace">
+    <option value="a1" selected = "selected">吸血鬼(A级)</option>
+    <option value="a2">恶魔(A级)</option>
+    <option value="b1">亡灵(B级)</option>
+    <option value="b2">下位天狗(B级)</option>
+    <option value="b3">妖怪(B级)</option>
+    <option value="b4">怪异(B级)</option>
+    <option value="c1">魔法使(C级)</option>
+    <option value="c2">河童(C级)</option>
+    <option value="c3">付丧神(C级)</option>
+    <option value="c4">妖兽(C级)</option>
+    <option value="d1">人类(D级)</option>
+    <option value="d2">妖精(D级)</option>
+</select>
+<label>种族点数</label>
+<div id="racePoint"></div>
+<label>剩余点数</label>
+<div id="overRacePoint"></div>
+<div class="refresh">
+    <a href="">重置</a>
+</div>
+<table id="characterPoint">
+    <tr class="bodyPoint">
+        <td class="attribute">
+            身体
+        </td>
+        <td class="minus">
+            <input class="body" type="button" value="-">
+        </td>
+        <td class="point">
+            -
+        </td>
+        <td class="add">
+            <input class="body" type="button" value="+">
+        </td>
+        <td class="amend">
+
+        </td>
+        <td class="total">
+            -
+            <div class="error_01">每项特性值不得低于3</div>
+            <div class="error_02">每项特性值不得高于6</div>
+        </td>
+    </tr>
+    <tr class="staPoint">
+        <td class="attribute">
+            耐久
+        </td>
+        <td class="minus">
+            <input class="sta" type="button" value="-">
+        </td>
+        <td class="point">
+            -
+        </td>
+        <td class="add">
+            <input class="sta" type="button" value="+">
+        </td>
+        <td class="amend">
+
+        </td>
+        <td class="total">
+            -
+            <div class="error_01">每项特性值不得低于3</div>
+            <div class="error_02">每项特性值不得高于6</div>
+        </td>
+    </tr>
+    <tr class="intPoint">
+        <td class="attribute">
+            知性
+        </td>
+        <td class="minus">
+            <input class="int" type="button" value="-">
+        </td>
+        <td class="point">
+            -
+        </td>
+        <td class="add">
+            <input class="int" type="button" value="+">
+        </td>
+        <td class="amend">
+
+        </td>
+        <td class="total">
+            -
+            <div class="error_01">每项特性值不得低于3</div>
+            <div class="error_02">每项特性值不得高于6</div>
+        </td>
+    </tr>
+    <tr class="feelPoint">
+        <td class="attribute">
+            感觉
+        </td>
+        <td class="minus">
+            <input class="feel" type="button" value="-">
+        </td>
+        <td class="point">
+            -
+        </td>
+        <td class="add">
+            <input class="feel" type="button" value="+">
+        </td>
+        <td class="amend">
+
+        </td>
+        <td class="total">
+            -
+            <div class="error_01">每项特性值不得低于3</div>
+            <div class="error_02">每项特性值不得高于6</div>
+        </td>
+    </tr>
+    <tr class="willPoint">
+        <td class="attribute">
+            意志
+        </td>
+        <td class="minus">
+            <input class="will" type="button" value="-">
+        </td>
+        <td class="point">
+            -
+        </td>
+        <td class="add">
+            <input class="will" type="button" value="+">
+        </td>
+        <td class="amend">
+
+        </td>
+        <td class="total">
+            -
+            <div class="error_01">每项特性值不得低于3</div>
+            <div class="error_02">每项特性值不得高于6</div>
+        </td>
+    </tr>
+</table>
+<div class="error_04">属性点用光了</div>
+</body>
+</html>
