@@ -8,3 +8,18 @@
 .refresh {
     display: inline-block;
 }
+#otherRaceCorrection > div {
+    display: none;
+
+    p {
+        margin: 0;
+        display: inline-block;
+    }
+}
+#characterPoint {
+    .total {
+        border: 1px solid red;
+        padding: 0 15px;
+    }
+
+}

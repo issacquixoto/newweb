@@ -15,7 +15,7 @@
 <body>
 <h1>特性值</h1>
 <label for="characterRace">人物种族</label>
-<select name="race" id="characterRace">
+<select name="race" id="characterRace" autocomplete="off">
     <option value="a1" selected = "selected">吸血鬼(A级)</option>
     <option value="a2">恶魔(A级)</option>
     <option value="b1">亡灵(B级)</option>
@@ -36,6 +36,36 @@
 <div class="refresh">
     <a href="">重置</a>
 </div>
+<div id="otherRaceCorrection">
+    <div class="c3Choose">
+        <input type="radio" name="c3Choose" value="add1" id="c3Choose1" autocomplete="off"><label for="c3Choose1">自选+1</label>
+        <input type="radio" name="c3Choose" value="add3" id="c3Choose3" autocomplete="off"><label for="c3Choose3">自选+2、自选-1</label>
+    </div>
+    <div class="other01">
+        <p>请选择提升属性:</p>
+        <input type="radio" name="other01" value="body" id="other01Body" autocomplete="off"><label for="other01Body">身体+1</label>
+        <input type="radio" name="other01" value="sta" id="other01Sta" autocomplete="off"><label for="other01Sta">耐久+1</label>
+        <input type="radio" name="other01" value="int" id="other01Int" autocomplete="off"><label for="other01Int">知性+1</label>
+        <input type="radio" name="other01" value="feel" id="other01Feel" autocomplete="off"><label for="other01Feel">感觉+1</label>
+        <input type="radio" name="other01" value="will" id="other01Will" autocomplete="off"><label for="other01Will">意志+1</label>
+    </div>
+    <div class="other02">
+        <p>请选择提升属性:</p>
+        <input type="radio" name="other02" value="body" id="other02Body" autocomplete="off"><label for="other02Body">身体+1</label>
+        <input type="radio" name="other02" value="sta" id="other02Sta" autocomplete="off"><label for="other02Sta">耐久+1</label>
+        <input type="radio" name="other02" value="int" id="other02Int" autocomplete="off"><label for="other02Int">知性+1</label>
+        <input type="radio" name="other02" value="feel" id="other02Feel" autocomplete="off"><label for="other02Feel">感觉+1</label>
+        <input type="radio" name="other02" value="will" id="other02Will" autocomplete="off"><label for="other02Will">意志+1</label>
+    </div>
+    <div class="other03">
+        <p style="color: #2ab27b">请选择下降属性:</p>
+        <input type="radio" name="other03" value="body" id="other03Body" autocomplete="off"><label for="other03Body">身体-1</label>
+        <input type="radio" name="other03" value="sta" id="other03Sta" autocomplete="off"><label for="other03Sta">耐久-1</label>
+        <input type="radio" name="other03" value="int" id="other03Int" autocomplete="off"><label for="other03Int">知性-1</label>
+        <input type="radio" name="other03" value="feel" id="other03Feel" autocomplete="off"><label for="other03Feel">感觉-1</label>
+        <input type="radio" name="other03" value="will" id="other03Will" autocomplete="off"><label for="other03Will">意志-1</label>
+    </div>
+</div>
 <table id="characterPoint">
     <tr class="bodyPoint">
         <td class="attribute">
@@ -51,10 +81,12 @@
             <input class="body" type="button" value="+">
         </td>
         <td class="amend">
-
+            -
         </td>
         <td class="total">
             -
+        </td>
+        <td class="error">
             <div class="error_01">每项特性值不得低于3</div>
             <div class="error_02">每项特性值不得高于6</div>
         </td>
@@ -73,10 +105,12 @@
             <input class="sta" type="button" value="+">
         </td>
         <td class="amend">
-
+            -
         </td>
         <td class="total">
             -
+        </td>
+        <td class="error">
             <div class="error_01">每项特性值不得低于3</div>
             <div class="error_02">每项特性值不得高于6</div>
         </td>
@@ -95,10 +129,12 @@
             <input class="int" type="button" value="+">
         </td>
         <td class="amend">
-
+            -
         </td>
         <td class="total">
             -
+        </td>
+        <td class="error">
             <div class="error_01">每项特性值不得低于3</div>
             <div class="error_02">每项特性值不得高于6</div>
         </td>
@@ -117,10 +153,12 @@
             <input class="feel" type="button" value="+">
         </td>
         <td class="amend">
-
+            -
         </td>
         <td class="total">
             -
+        </td>
+        <td class="error">
             <div class="error_01">每项特性值不得低于3</div>
             <div class="error_02">每项特性值不得高于6</div>
         </td>
@@ -139,15 +177,17 @@
             <input class="will" type="button" value="+">
         </td>
         <td class="amend">
-
+            -
         </td>
         <td class="total">
             -
+        </td>
+        <td class="error">
             <div class="error_01">每项特性值不得低于3</div>
             <div class="error_02">每项特性值不得高于6</div>
         </td>
     </tr>
 </table>
-<div class="error_04">属性点用光了</div>
+<div class="error_04">属性点用完了</div>
 </body>
 </html>
