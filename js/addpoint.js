@@ -222,26 +222,29 @@ $(document).ready(function () {
         }
     });
 
-    //额外修正选项
+    //C3选项
     $('#otherRaceCorrection input').on('change', function () {
         var name = $(this).attr('name');
         var other = $('input[name="' + name + '"]:checked').val();
-        var otherName = otherRaceCorrection[name];
 
         if (name === 'c3Choose' && other === 'add1') {
             $('#otherRaceCorrection > div').css('display', 'none');
-            $('#otherRaceCorrection .c3Choose').css('display', 'block');
-            $('#otherRaceCorrection .other01').css('display', 'block');
-            cleanChoose();
-            refreshValue();
-            return
+            $('#otherRaceCorrection .other01').css('display', 'inline-block');
         }
         if (name === 'c3Choose' && other === 'add3') {
-            $('#otherRaceCorrection > div').css('display', 'block');
-            cleanChoose();
-            refreshValue();
-            return
+            $('#otherRaceCorrection > div').css('display', 'inline-block');
         }
+
+        $('#otherRaceCorrection .c3Choose').css('display', 'block');
+        cleanChoose();
+        refreshValue();
+    });
+
+    //额外修正选项
+    $('#otherRaceCorrection select').on('change', function () {
+        var name = $(this).attr('name');
+        var other = $(this).val();
+        var otherName = otherRaceCorrection[name];
 
         if (name === 'other01' || name === 'other02') {
             if (otherRaceCorrection[other] === undefined) {
@@ -285,11 +288,7 @@ $(document).ready(function () {
 
     //清除种族特殊修正radio选择
     function cleanChoose() {
-        $('input[type=radio]').attr('checked',true);
-        // $('#otherRaceCorrection .other01 input[type=radio]').attr('checked',true);
-        // $('#otherRaceCorrection .other02 input[type=radio]').attr('checked',true);
-        // $('#otherRaceCorrection .other03 input[type=radio]').attr('checked',true);
-
+        $("#otherRaceCorrection option:first").prop("selected", 'selected');
         otherRaceCorrection = {};
     }
 
