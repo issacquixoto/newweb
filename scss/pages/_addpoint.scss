@@ -1,7 +1,7 @@
 #racePoint, #overRacePoint {
     display: inline-block;
 }
-.error_01, .error_02, .error_03, .error_04 {
+.error {
     color: red;
     display: none;
 }
@@ -14,6 +14,7 @@
     p {
         margin: 0;
         display: inline-block;
+        color: red;
     }
 }
 #characterPoint {

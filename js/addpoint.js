@@ -154,6 +154,12 @@ $(document).ready(function () {
         //导入种族修正
         raceCorrection = raceRank[changeRace].correction;
 
+        //消除警报
+        $('.error').css('display', 'none');
+
+        //清除种族特殊修正radio选择
+        cleanChoose();
+
         //额外修正开关控制
         $('#otherRaceCorrection > div').css('display', 'none');
         if (changeRace === 'c3') {
@@ -173,7 +179,7 @@ $(document).ready(function () {
         //属性点点不够的警报
         if (overCharacterPoint <= 0) {
             $('.error_04').css('display', 'block');
-            returnamend
+            return
         }
         //未选种族则默认为吸血鬼
         if (changeRace === undefined) {
@@ -220,22 +226,47 @@ $(document).ready(function () {
     $('#otherRaceCorrection input').on('change', function () {
         var name = $(this).attr('name');
         var other = $('input[name="' + name + '"]:checked').val();
-        if (otherRaceCorrection[name] === other) {
-            return
-        }
-        else {
-            otherRaceCorrection[name] = other;
-        }
-        if (name === 'c3Choose' && otherRaceCorrection.c3Choose === 'add1') {
+        var otherName = otherRaceCorrection[name];
+
+        if (name === 'c3Choose' && other === 'add1') {
             $('#otherRaceCorrection > div').css('display', 'none');
             $('#otherRaceCorrection .c3Choose').css('display', 'block');
             $('#otherRaceCorrection .other01').css('display', 'block');
+            cleanChoose();
+            refreshValue();
             return
         }
-        if (name === 'c3Choose' && otherRaceCorrection.c3Choose === 'add3') {
+        if (name === 'c3Choose' && other === 'add3') {
             $('#otherRaceCorrection > div').css('display', 'block');
+            cleanChoose();
+            refreshValue();
             return
         }
+
+        if (name === 'other01' || name === 'other02') {
+            if (otherRaceCorrection[other] === undefined) {
+                otherRaceCorrection[other] = 1;
+            }
+            else {
+                ++otherRaceCorrection[other];
+            }
+            if (otherName !== undefined && otherRaceCorrection[other] !== undefined) {
+                --otherRaceCorrection[otherName];
+            }
+        }
+        if (name === 'other03') {
+            if (otherRaceCorrection[other] === undefined) {
+                otherRaceCorrection[other] = -1;
+            }
+            else {
+                --otherRaceCorrection[other];
+            }
+            if (otherName !== undefined && otherRaceCorrection[other] !== undefined) {
+                ++otherRaceCorrection[otherName];
+            }
+        }
+
+        otherRaceCorrection[name] = other;
 
         OverCharacterPoint();
         refreshValue();
@@ -252,29 +283,52 @@ $(document).ready(function () {
         }
     }
 
+    //清除种族特殊修正radio选择
+    function cleanChoose() {
+        $('input[type=radio]').attr('checked',true);
+        // $('#otherRaceCorrection .other01 input[type=radio]').attr('checked',true);
+        // $('#otherRaceCorrection .other02 input[type=radio]').attr('checked',true);
+        // $('#otherRaceCorrection .other03 input[type=radio]').attr('checked',true);
+
+        otherRaceCorrection = {};
+    }
+
     //计算剩余属性点数
     function OverCharacterPoint() {
         var addCharacterPoint = 0;
         $.each(characterPoint, function (key, val) {
             addCharacterPoint = addCharacterPoint + val
         });
-        overCharacterPoint = raceRank[changeRace].point - addCharacterPoint
+        overCharacterPoint = raceRank[changeRace].point - addCharacterPoint;
         $('#overRacePoint').text(overCharacterPoint);
     }
 
     //刷新页面数据
     function refreshValue() {
+        //属性数值
         $.each(characterPoint, function (key, val) {
             $('.' + key + 'Point .point').html(val);
-            if (key === otherRaceCorrection.other01) {
-                $('.' + key + 'Point .amend').html(raceCorrection[key] + 1);
-                totalCharacterPoint[key] = raceCorrection[key] + val + 1;
-            }
-            else {
+
+            if (otherRaceCorrection[key] === undefined) {
                 $('.' + key + 'Point .amend').html(raceCorrection[key]);
                 totalCharacterPoint[key] = raceCorrection[key] + val;
             }
+            else {
+                $('.' + key + 'Point .amend').html(raceCorrection[key] + otherRaceCorrection[key]);
+                totalCharacterPoint[key] = raceCorrection[key] + otherRaceCorrection[key] + val;
+            }
             $('.' + key + 'Point .total').html(totalCharacterPoint[key]);
         });
+        //副属性数值
+        var subPoint = $('#subCharacterPoint');
+        var dpRecover = Math.ceil((totalCharacterPoint.int + totalCharacterPoint.feel) / 3);
+        if (dpRecover < 2) {
+            dpRecover = 2
+        }
+        subPoint.find('.hp .value').html(10 + (totalCharacterPoint.sta * 4));
+        subPoint.find('.mp .value').html(totalCharacterPoint.will * 4);
+        subPoint.find('.dp .value').html(10 + totalCharacterPoint.body + totalCharacterPoint.sta + totalCharacterPoint.will);
+        subPoint.find('.dpRecover .value').html(dpRecover);
+        subPoint.find('.dpRecover .value').html('2');
     }
 });
