@@ -30,7 +30,7 @@
     <option value="d2">妖精(D级)</option>
 </select>
 <label>种族点数</label>
-<div id="racePoint"></div>
+<div id="raceRankPoint"></div>
 <label>剩余点数</label>
 <div id="overRacePoint"></div>
 <div class="refresh">
@@ -198,7 +198,6 @@
     </tr>
 </table>
 <div class="error error_04">属性点用完了</div>
-
 <table id="subCharacterPoint" bgcolor="#7fffd4">
     <tr class="hp">
         <td>
@@ -230,6 +229,69 @@
         </td>
         <td class="value">
 
+        </td>
+    </tr>
+</table>
+
+<h1>技能</h1>
+<label for="skillRank">技能等级</label>
+<select name="race" id="skillRank" autocomplete="off">
+    <option value="a" selected = "selected">A级</option>
+    <option value="b">B级</option>
+    <option value="c">C级</option>
+    <option value="d">D级</option>
+</select>
+<label>种族点数</label>
+<div id="skillRankPoint"></div>
+<label>剩余点数</label>
+<div id="overskillPoint"></div>
+<div class="refresh">
+    <a href="">重置</a>
+</div>
+<table id="skillPoint">
+    <tr class="skill1">
+        <td class="chooseSkill">
+            <select name="skill1">
+                <option value="eat">吃饭</option>
+                <option value="sleep">睡觉</option>
+                <option value="touchFish">摸鱼</option>
+                <option value="kickGame">打游戏</option>
+            </select>
+        </td>
+        <td class="minus">
+            <input class="skill1" type="button" value="-">
+        </td>
+        <td class="skillLevel">
+            0
+        </td>
+        <td class="add">
+            <input class="skill1" type="button" value="+">
+        </td>
+        <td>
+            <div class="error error_05">请先选择技能</div>
+        </td>
+    </tr>
+    <tr class="skill2">
+        <td class="chooseSkill">
+            <select name="skill2">
+                <option></option>
+                <option value="eat">吃饭</option>
+                <option value="sleep">睡觉</option>
+                <option value="touchFish">摸鱼</option>
+                <option value="kickGame">打游戏</option>
+            </select>
+        </td>
+        <td class="minus">
+            <input class="skill2" type="button" value="-">
+        </td>
+        <td class="skillLevel">
+            0
+        </td>
+        <td class="add">
+            <input class="skill2" type="button" value="+">
+        </td>
+        <td>
+            <div class="error error_05">请先选择技能</div>
         </td>
     </tr>
 </table>

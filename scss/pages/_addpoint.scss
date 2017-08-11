@@ -1,9 +1,14 @@
-#racePoint, #overRacePoint {
+#raceRankPoint, #overRacePoint {
     display: inline-block;
 }
 .error {
     color: red;
     display: none;
+
+    //01 特性值过低错误
+    //02 特性值过高错误
+    //04 属性点错误
+    //05 选择技能错误
 }
 .refresh {
     display: inline-block;
@@ -22,4 +27,7 @@
         border: 1px solid red;
         padding: 0 15px;
     }
+}
+#skillRankPoint, #overskillPoint {
+    display: inline-block;
 }
