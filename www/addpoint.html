@@ -251,7 +251,8 @@
 <table id="skillPoint">
     <tr class="skill1">
         <td class="chooseSkill">
-            <select name="skill1">
+            <select name="skill1" autocomplete="off">
+                <option></option>
                 <option value="eat">吃饭</option>
                 <option value="sleep">睡觉</option>
                 <option value="touchFish">摸鱼</option>
@@ -269,11 +270,12 @@
         </td>
         <td>
             <div class="error error_05">请先选择技能</div>
+            <div class="error error_06">新建角色技能等级不能低于0级或超过4级</div>
         </td>
     </tr>
     <tr class="skill2">
         <td class="chooseSkill">
-            <select name="skill2">
+            <select name="skill2" autocomplete="off">
                 <option></option>
                 <option value="eat">吃饭</option>
                 <option value="sleep">睡觉</option>
@@ -292,6 +294,7 @@
         </td>
         <td>
             <div class="error error_05">请先选择技能</div>
+            <div class="error error_06">新建角色技能等级不能低于0级或超过4级</div>
         </td>
     </tr>
 </table>

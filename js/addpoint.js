@@ -7,6 +7,13 @@ $(document).ready(function () {
         feel: 3,
         will: 3
     };
+    //技能加点
+    var skillPoint = {
+        skill0: {
+            name: '',
+            level: 0
+        }
+    };
     //剩余种族点数
     var overCharacterPoint;
     //种族修正
@@ -151,6 +158,8 @@ $(document).ready(function () {
         c: 34,
         d: 26
     };
+    //剩余技能点数
+    var overSkillPoint;
 
     //种族触发
 
@@ -160,7 +169,6 @@ $(document).ready(function () {
 
         //导入种族点数
         changeRace = $(this).find("option:selected").val();
-        $('#raceRankPoint').text(raceRank[changeRace].point);
 
         //导入种族修正
         raceCorrection = raceRank[changeRace].correction;
@@ -292,7 +300,56 @@ $(document).ready(function () {
     $('#skillRank').on('change', function () {
         //导入技能点数
         changeSkill = $(this).find("option:selected").val();
-        $('#skillRankPoint').text(skillRank[changeSkill]);
+    });
+    //选择技能
+    $('#skillPoint select').on('change', function () {
+        var skillNumber = $(this).attr('name');
+        var skillName = $(this).val();
+        //未选等级则默认
+        if (changeSkill === undefined) {
+            changeSkill = 'a';
+        }
+        //清除错误
+        $('.error_05').css('display', 'none');
+        skillPoint[skillNumber] = {
+            name: skillName,
+            level: 0
+        };
+        refreshSkillValue();
+    });
+    //加技能点
+    $('#skillPoint input[value="+"]').on('click', function () {
+        var addSkill = $(this).attr('class');
+        if (skillPoint[addSkill] === undefined) {
+            $('tr.' + addSkill + ' .error_05').css('display', 'inline-block');
+            return;
+        }
+        else if (skillPoint[addSkill].level >= 4) {
+            $('tr.' + addSkill + ' .error_06').css('display', 'inline-block');
+            return;
+        }
+        else {
+            ++skillPoint[addSkill].level;
+            $('.error_06').css('display', 'none');
+        }
+        refreshSkillValue();
+    });
+    //减技能点
+    $('#skillPoint input[value="-"]').on('click', function () {
+        var minusSkill = $(this).attr('class');
+        if (skillPoint[minusSkill] === undefined) {
+            $('tr.' + minusSkill + ' .error_05').css('display', 'inline-block');
+            return;
+        }
+        else if (skillPoint[minusSkill].level <= 0) {
+            $('tr.' + minusSkill + ' .error_06').css('display', 'inline-block');
+            return;
+        }
+        else {
+            --skillPoint[minusSkill].level;
+            $('.error_06').css('display', 'none');
+        }
+        refreshSkillValue();
     });
 
     //重置种族属性点数
@@ -324,6 +381,7 @@ $(document).ready(function () {
 
     //刷新页面数据
     function refreshValue() {
+        $('#raceRankPoint').text(raceRank[changeRace].point);
         //属性数值
         $.each(characterPoint, function (key, val) {
             $('.' + key + 'Point .point').html(val);
@@ -349,5 +407,34 @@ $(document).ready(function () {
         subPoint.find('.dp .value').html(10 + totalCharacterPoint.body + totalCharacterPoint.sta + totalCharacterPoint.will);
         subPoint.find('.dpRecover .value').html(dpRecover);
         subPoint.find('.dpRecover .value').html('2');
+    }
+
+    //刷新技能数据
+    function refreshSkillValue() {
+        $('#skillRankPoint').text(skillRank[changeSkill]);
+        //技能等级
+        $.each(skillPoint, function (key, val) {
+            $('tr.' + key + ' .skillLevel').html(val.level)
+        });
+    }
+
+    //+1等差数列
+    function series1(Num) {
+        var val;
+        Num = Math.floor(Num);
+
+        if (Num > 0) {
+            for (var i = 0; i <= Num ; i++) {
+                val = val + i
+            }
+            return val;
+        }
+        else {
+            Num = Math.abs(Num);
+            for (var j = 0; j <= Num ; j++) {
+                val = val - j
+            }
+            return val;
+        }
     }
 });
