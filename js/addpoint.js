@@ -389,7 +389,7 @@ $(document).ready(function () {
     function OverSkillPoint() {
         var addSkillPoint = 0;
         $.each(skillPoint, function (key, val) {
-            addSkillPoint = addSkillPoint + series1(val.level);
+            addSkillPoint = addSkillPoint + skillSeries(val.level);
         });
         overSkillPoint = skillRank[changeSkill] - addSkillPoint;
         $('#overskillPoint').text(overSkillPoint);
@@ -435,25 +435,18 @@ $(document).ready(function () {
     }
 
     //+1等差数列
-    function series1(Num) {
+    function skillSeries(Num) {
         var a = 0;
         Num = Math.floor(Num);
 
-        if (Num === 0) {
-            return 0;
-        }
-        else if (Num > 0) {
-            for (var i = 0; i <= Num; i++) {
+        for (var i = 0; i <= Num; i++) {
+            if (i > 5) {
+                a = a + 5;
+            }
+            else {
                 a = a + i;
             }
-            return a;
         }
-        else {
-            Num = Math.abs(Num);
-            for (var j = 0; j <= Num; j++) {
-                a -= j;
-            }
-            return a;
-        }
+        return a;
     }
 });
