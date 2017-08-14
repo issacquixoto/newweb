@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    //赋值
+
     //种族加点
     var characterPoint = {
         body: 3,
@@ -16,6 +18,8 @@ $(document).ready(function () {
     };
     //剩余种族点数
     var overCharacterPoint;
+    //剩余技能点数
+    var overSkillPoint;
     //种族修正
     var raceCorrection = {};
     //额外种族修正
@@ -158,8 +162,6 @@ $(document).ready(function () {
         c: 34,
         d: 26
     };
-    //剩余技能点数
-    var overSkillPoint;
 
     //种族触发
 
@@ -191,7 +193,6 @@ $(document).ready(function () {
         OverCharacterPoint();
         refreshValue();
     });
-
     //加种族属性点
     $('#characterPoint input[value="+"]').on('click', function () {
         var addPoint = $(this).attr('class');
@@ -217,7 +218,6 @@ $(document).ready(function () {
             $('.' + addPoint + 'Point .error_02').css('display', 'inline-block')
         }
     });
-
     //减种族属性点
     $('#characterPoint input[value="-"]').on('click', function () {
         var minusPoint = $(this).attr('class');
@@ -240,7 +240,6 @@ $(document).ready(function () {
             $('.' + minusPoint + 'Point .error_01').css('display', 'inline-block')
         }
     });
-
     //种族C3选项
     $('#otherRaceCorrection input').on('change', function () {
         var name = $(this).attr('name');
@@ -258,7 +257,6 @@ $(document).ready(function () {
         cleanChoose();
         refreshValue();
     });
-
     //种族额外修正选项
     $('#otherRaceCorrection select').on('change', function () {
         var name = $(this).attr('name');
@@ -352,6 +350,8 @@ $(document).ready(function () {
         refreshSkillValue();
     });
 
+    //函数
+
     //重置种族属性点数
     function resetCharacterPoint() {
         characterPoint = {
@@ -362,13 +362,11 @@ $(document).ready(function () {
             'will': 3
         }
     }
-
     //清除种族特殊修正radio选择
     function cleanChoose() {
         $("#otherRaceCorrection option:first").prop("selected", 'selected');
         otherRaceCorrection = {};
     }
-
     //计算剩余种族属性点数
     function OverCharacterPoint() {
         var addCharacterPoint = 0;
@@ -378,7 +376,6 @@ $(document).ready(function () {
         overCharacterPoint = raceRank[changeRace].point - addCharacterPoint;
         $('#overRacePoint').text(overCharacterPoint);
     }
-
     //刷新页面数据
     function refreshValue() {
         $('#raceRankPoint').text(raceRank[changeRace].point);
@@ -408,7 +405,6 @@ $(document).ready(function () {
         subPoint.find('.dpRecover .value').html(dpRecover);
         subPoint.find('.dpRecover .value').html('2');
     }
-
     //刷新技能数据
     function refreshSkillValue() {
         $('#skillRankPoint').text(skillRank[changeSkill]);
@@ -417,21 +413,20 @@ $(document).ready(function () {
             $('tr.' + key + ' .skillLevel').html(val.level)
         });
     }
-
     //+1等差数列
     function series1(Num) {
         var val;
         Num = Math.floor(Num);
 
         if (Num > 0) {
-            for (var i = 0; i <= Num ; i++) {
+            for (var i = 0; i <= Num; i++) {
                 val = val + i
             }
             return val;
         }
         else {
             Num = Math.abs(Num);
-            for (var j = 0; j <= Num ; j++) {
+            for (var j = 0; j <= Num; j++) {
                 val = val - j
             }
             return val;
