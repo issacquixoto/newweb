@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    //加点
+    //种族加点
     var characterPoint = {
         body: 3,
         sta: 3,
@@ -7,16 +7,18 @@ $(document).ready(function () {
         feel: 3,
         will: 3
     };
-    //剩余点数
+    //剩余种族点数
     var overCharacterPoint;
     //种族修正
     var raceCorrection = {};
-    //额外修正
+    //额外种族修正
     var otherRaceCorrection = {};
-    //加点合计
+    //种族加点合计
     var totalCharacterPoint = {};
     //所选种族
     var changeRace;
+    //所选技能
+    var changeSkill;
     //种族等级数据
     var raceRank = {
         a1: {
@@ -142,14 +144,23 @@ $(document).ready(function () {
             }
         }
     };
+    //技能等级数据
+    var skillRank = {
+        a: 50,
+        b: 42,
+        c: 34,
+        d: 26
+    };
 
-    //选择种族
+    //种族触发
+
+    //选择种族等级
     $('#characterRace').on('change', function () {
         resetCharacterPoint();
 
         //导入种族点数
-        changeRace = $(characterRace).find("option:selected").val();
-        $('#racePoint').text(raceRank[changeRace].point);
+        changeRace = $(this).find("option:selected").val();
+        $('#raceRankPoint').text(raceRank[changeRace].point);
 
         //导入种族修正
         raceCorrection = raceRank[changeRace].correction;
@@ -173,7 +184,7 @@ $(document).ready(function () {
         refreshValue();
     });
 
-    //加属性点
+    //加种族属性点
     $('#characterPoint input[value="+"]').on('click', function () {
         var addPoint = $(this).attr('class');
         //属性点点不够的警报
@@ -199,7 +210,7 @@ $(document).ready(function () {
         }
     });
 
-    //减属性点
+    //减种族属性点
     $('#characterPoint input[value="-"]').on('click', function () {
         var minusPoint = $(this).attr('class');
         //消除点数用完的警报
@@ -222,7 +233,7 @@ $(document).ready(function () {
         }
     });
 
-    //C3选项
+    //种族C3选项
     $('#otherRaceCorrection input').on('change', function () {
         var name = $(this).attr('name');
         var other = $('input[name="' + name + '"]:checked').val();
@@ -240,7 +251,7 @@ $(document).ready(function () {
         refreshValue();
     });
 
-    //额外修正选项
+    //种族额外修正选项
     $('#otherRaceCorrection select').on('change', function () {
         var name = $(this).attr('name');
         var other = $(this).val();
@@ -275,7 +286,16 @@ $(document).ready(function () {
         refreshValue();
     });
 
-    //重置属性点数
+    //技能触发
+
+    //选择技能等级
+    $('#skillRank').on('change', function () {
+        //导入技能点数
+        changeSkill = $(this).find("option:selected").val();
+        $('#skillRankPoint').text(skillRank[changeSkill]);
+    });
+
+    //重置种族属性点数
     function resetCharacterPoint() {
         characterPoint = {
             'body': 3,
@@ -292,7 +312,7 @@ $(document).ready(function () {
         otherRaceCorrection = {};
     }
 
-    //计算剩余属性点数
+    //计算剩余种族属性点数
     function OverCharacterPoint() {
         var addCharacterPoint = 0;
         $.each(characterPoint, function (key, val) {
