@@ -303,7 +303,7 @@ $(document).ready(function () {
         refreshSkillValue();
     });
     //选择技能
-    $('#skillPoint select').on('change', function () {
+    $('#skillPoint').on('change', 'select', function () {
         var skillNumber = $(this).attr('name');
         var skillName = $(this).val();
         //未选等级则默认
@@ -311,7 +311,7 @@ $(document).ready(function () {
             changeSkill = 'a';
         }
         //清除错误
-        $('.error_05').css('display', 'none');
+        $('.error_11').css('display', 'none');
         skillPoint[skillNumber] = {
             name: skillName,
             level: 0
@@ -320,14 +320,14 @@ $(document).ready(function () {
         refreshSkillValue();
     });
     //加技能点
-    $('#skillPoint input[value="+"]').on('click', function () {
+    $('#skillPoint').on('click', 'input[value="+"]', function () {
         var addSkill = $(this).attr('class');
         if (skillPoint[addSkill] === undefined) {
-            $('tr.' + addSkill + ' .error_05').css('display', 'inline-block');
+            $('tr.' + addSkill + ' .error_11').css('display', 'inline-block');
             return;
         }
         else if (skillPoint[addSkill].level >= 4) {
-            $('tr.' + addSkill + ' .error_06').css('display', 'inline-block');
+            $('tr.' + addSkill + ' .error_12').css('display', 'inline-block');
             return;
         }
         else {
@@ -338,14 +338,14 @@ $(document).ready(function () {
         refreshSkillValue();
     });
     //减技能点
-    $('#skillPoint input[value="-"]').on('click', function () {
+    $('#skillPoint').on('click', 'input[value = "-"]', function () {
         var minusSkill = $(this).attr('class');
         if (skillPoint[minusSkill] === undefined) {
-            $('tr.' + minusSkill + ' .error_05').css('display', 'inline-block');
+            $('tr.' + minusSkill + ' .error_11').css('display', 'inline-block');
             return;
         }
         else if (skillPoint[minusSkill].level <= 0) {
-            $('tr.' + minusSkill + ' .error_06').css('display', 'inline-block');
+            $('tr.' + minusSkill + ' .error_12').css('display', 'inline-block');
             return;
         }
         else {
@@ -354,6 +354,24 @@ $(document).ready(function () {
         }
         OverSkillPoint();
         refreshSkillValue();
+    });
+    //添加技能
+    $('#createSkill').on('click', function () {
+        var lastSkill = $('#skillPoint tr:nth-last-of-type(2)').attr('class');
+        lastSkill = lastSkill.replace(/skill/, '');
+        ++lastSkill;
+        lastSkill = 'skill' + lastSkill;
+        $('#skillPoint .createSkill').before(
+            '<tr class="' + lastSkill + '">' +
+            '<td class="chooseSkill"><select name="' + lastSkill + '" autocomplete="off">' +
+            '<option></option><option value="eat">吃饭</option>' +
+            '</select></td>' +
+            '<td class="minus"><input class="' + lastSkill + '" type="button" value="-"></td>' +
+            '<td class="skillLevel">0</td>' +
+            '<td class="add"><input class="' + lastSkill + '" type="button" value="+"></td>' +
+            '<td><div class="error error_11">请先选择技能</div><div class="error error_12">新建角色技能等级不能低于0级或超过4级</div></td>' +
+            '</tr>'
+        );
     });
 
     //函数
@@ -434,7 +452,7 @@ $(document).ready(function () {
         });
     }
 
-    //+1等差数列
+    //技能等级费点
     function skillSeries(Num) {
         var a = 0;
         Num = Math.floor(Num);
