@@ -298,6 +298,9 @@ $(document).ready(function () {
     $('#skillRank').on('change', function () {
         //导入技能点数
         changeSkill = $(this).find("option:selected").val();
+
+        OverSkillPoint();
+        refreshSkillValue();
     });
     //选择技能
     $('#skillPoint select').on('change', function () {
@@ -313,6 +316,7 @@ $(document).ready(function () {
             name: skillName,
             level: 0
         };
+        OverSkillPoint();
         refreshSkillValue();
     });
     //加技能点
@@ -330,6 +334,7 @@ $(document).ready(function () {
             ++skillPoint[addSkill].level;
             $('.error_06').css('display', 'none');
         }
+        OverSkillPoint();
         refreshSkillValue();
     });
     //减技能点
@@ -347,6 +352,7 @@ $(document).ready(function () {
             --skillPoint[minusSkill].level;
             $('.error_06').css('display', 'none');
         }
+        OverSkillPoint();
         refreshSkillValue();
     });
 
@@ -362,11 +368,13 @@ $(document).ready(function () {
             'will': 3
         }
     }
+
     //清除种族特殊修正radio选择
     function cleanChoose() {
         $("#otherRaceCorrection option:first").prop("selected", 'selected');
         otherRaceCorrection = {};
     }
+
     //计算剩余种族属性点数
     function OverCharacterPoint() {
         var addCharacterPoint = 0;
@@ -376,6 +384,17 @@ $(document).ready(function () {
         overCharacterPoint = raceRank[changeRace].point - addCharacterPoint;
         $('#overRacePoint').text(overCharacterPoint);
     }
+
+    //计算剩余种族技能点数
+    function OverSkillPoint() {
+        var addSkillPoint = 0;
+        $.each(skillPoint, function (key, val) {
+            addSkillPoint = addSkillPoint + series1(val.level);
+        });
+        overSkillPoint = skillRank[changeSkill] - addSkillPoint;
+        $('#overskillPoint').text(overSkillPoint);
+    }
+
     //刷新页面数据
     function refreshValue() {
         $('#raceRankPoint').text(raceRank[changeRace].point);
@@ -405,6 +424,7 @@ $(document).ready(function () {
         subPoint.find('.dpRecover .value').html(dpRecover);
         subPoint.find('.dpRecover .value').html('2');
     }
+
     //刷新技能数据
     function refreshSkillValue() {
         $('#skillRankPoint').text(skillRank[changeSkill]);
@@ -413,23 +433,27 @@ $(document).ready(function () {
             $('tr.' + key + ' .skillLevel').html(val.level)
         });
     }
+
     //+1等差数列
     function series1(Num) {
-        var val;
+        var a = 0;
         Num = Math.floor(Num);
 
-        if (Num > 0) {
+        if (Num === 0) {
+            return 0;
+        }
+        else if (Num > 0) {
             for (var i = 0; i <= Num; i++) {
-                val = val + i
+                a = a + i;
             }
-            return val;
+            return a;
         }
         else {
             Num = Math.abs(Num);
             for (var j = 0; j <= Num; j++) {
-                val = val - j
+                a -= j;
             }
-            return val;
+            return a;
         }
     }
 });
