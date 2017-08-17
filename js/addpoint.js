@@ -11,10 +11,10 @@ $(document).ready(function () {
     };
     //技能加点
     var skillPoint = {
-        skill0: {
-            name: '',
-            level: 0
-        }
+        // skill0: {
+        //     name: '',
+        //     level: 0
+        // }
     };
     //剩余种族点数
     var overCharacterPoint;
@@ -364,6 +364,19 @@ $(document).ready(function () {
             $('#otherRaceCorrection .other01').css('display', 'block');
         }
 
+        //影响技能的种族
+//         付丧神
+//         从战斗和感知以外的技能中选择一个和自己本体的用途有关的技能。免费获得3级，作成人物时可支付消费升到5级。（例如是乐器的话可以是〈唱歌〉或〈乐器：「自己的本体」〉、和自己有关的书籍知识等）
+
+        if (changeRace === 'c3') {
+            createSkill('skill0');
+            skillPoint = {
+                skill0: {
+                    level: 3
+                }
+            }
+        }
+
         OverCharacterPoint();
         refreshValue();
     });
@@ -489,9 +502,9 @@ $(document).ready(function () {
         }
 
         //导入副职业
-        $.each(subSkillSelect, function (key,val) {
+        $.each(subSkillSelect, function (key, val) {
             var a;
-            if (key === 'main'){
+            if (key === 'main') {
                 a = '<option value="' + key + '" selected="selected">' + val + '</option>';
             }
             else {
@@ -500,14 +513,21 @@ $(document).ready(function () {
             subSkillOption = subSkillOption + a;
         });
 
-        $('tr.' + skillNumber + ' .chooseSubSkill select').attr('disabled',false).html(subSkillOption);
+        $('tr.' + skillNumber + ' .chooseSubSkill select').attr('disabled', false).html(subSkillOption);
 
         //清除错误
         $('.error').css('display', 'none');
-        skillPoint[skillNumber] = {
-            name: skillName,
-            level: 0
-        };
+        if (skillNumber === 'skill0') {
+            skillPoint[skillNumber] = {
+                name: skillName
+            };
+        }
+        else {
+            skillPoint[skillNumber] = {
+                name: skillName,
+                level: 0
+            };
+        }
         OverSkillPoint();
         refreshSkillValue();
     });
@@ -515,21 +535,42 @@ $(document).ready(function () {
     $('#skillPoint').on('click', 'input[value="+"]', function () {
         var addSkill = $(this).attr('class');
         $('.error').css('display', 'none');
-        if (skillPoint[addSkill] === undefined) {
-            $('tr.' + addSkill + ' .error_11').css('display', 'inline-block');
-            return;
-        }
-        else if (skillPoint[addSkill].level >= 4) {
-            $('tr.' + addSkill + ' .error_12').css('display', 'inline-block');
-            return;
-        }
-        else if (overSkillPoint - skillSeries2(skillPoint[addSkill].level + 1) < 0) {
-            $('.error_14').css('display', 'inline-block');
-            return;
+
+        if (addSkill === 'skill0') {
+            if (skillPoint[addSkill].name === undefined) {
+                $('tr.' + addSkill + ' .error_11').css('display', 'inline-block');
+                return;
+            }
+            else if (skillPoint[addSkill].level >= 5) {
+                $('tr.' + addSkill + ' .error_12').css('display', 'inline-block');
+                return;
+            }
+            else if (overSkillPoint - skillSeries2(skillPoint[addSkill].level + 1) < 0) {
+                $('.error_14').css('display', 'inline-block');
+                return;
+            }
+            else {
+                ++skillPoint[addSkill].level;
+            }
         }
         else {
-            ++skillPoint[addSkill].level;
+            if (skillPoint[addSkill] === undefined) {
+                $('tr.' + addSkill + ' .error_11').css('display', 'inline-block');
+                return;
+            }
+            else if (skillPoint[addSkill].level >= 4) {
+                $('tr.' + addSkill + ' .error_12').css('display', 'inline-block');
+                return;
+            }
+            else if (overSkillPoint - skillSeries2(skillPoint[addSkill].level + 1) < 0) {
+                $('.error_14').css('display', 'inline-block');
+                return;
+            }
+            else {
+                ++skillPoint[addSkill].level;
+            }
         }
+
         OverSkillPoint();
         refreshSkillValue();
     });
@@ -537,17 +578,34 @@ $(document).ready(function () {
     $('#skillPoint').on('click', 'input[value = "-"]', function () {
         var minusSkill = $(this).attr('class');
         $('.error').css('display', 'none');
-        if (skillPoint[minusSkill] === undefined) {
-            $('tr.' + minusSkill + ' .error_11').css('display', 'inline-block');
-            return;
-        }
-        else if (skillPoint[minusSkill].level <= 0) {
-            $('tr.' + minusSkill + ' .error_12').css('display', 'inline-block');
-            return;
+
+        if (minusSkill === 'skill0') {
+            if (skillPoint[minusSkill].name === undefined) {
+                $('tr.' + minusSkill + ' .error_11').css('display', 'inline-block');
+                return;
+            }
+            else if (skillPoint[minusSkill].level <= 3) {
+                $('tr.' + minusSkill + ' .error_12').css('display', 'inline-block');
+                return;
+            }
+            else {
+                --skillPoint[minusSkill].level;
+            }
         }
         else {
-            --skillPoint[minusSkill].level;
+            if (skillPoint[minusSkill] === undefined) {
+                $('tr.' + minusSkill + ' .error_11').css('display', 'inline-block');
+                return;
+            }
+            else if (skillPoint[minusSkill].level <= 0) {
+                $('tr.' + minusSkill + ' .error_12').css('display', 'inline-block');
+                return;
+            }
+            else {
+                --skillPoint[minusSkill].level;
+            }
         }
+
         OverSkillPoint();
         refreshSkillValue();
     });
@@ -602,22 +660,39 @@ $(document).ready(function () {
     //添加技能
     function createSkill(skillNumber) {
         var skillSelect;
+
         $.each(skills, function (key, val) {
             var a = '<option value="' + key + '">' + val.main + '</option>';
             skillSelect = skillSelect + a;
         });
-        $('#skillPoint .createSkill').before(
-            '<tr class="' + skillNumber + '">' +
-            '<td class="chooseSkill"><select name="' + skillNumber + '" autocomplete="off">' +
-            '<option></option>' + skillSelect +
-            '</select></td>' +
-            '<td class="chooseSubSkill"><select name="' + skillNumber + '" autocomplete="off" disabled="disabled"></select></td>' +
-            '<td class="minus"><input class="' + skillNumber + '" type="button" value="-"></td>' +
-            '<td class="skillLevel">0</td>' +
-            '<td class="add"><input class="' + skillNumber + '" type="button" value="+"></td>' +
-            '<td><div class="error error_11">请先选择技能</div><div class="error error_12">新建角色技能等级不能低于0级或超过4级</div></td>' +
-            '</tr>'
-        );
+        if (skillNumber === 'skill0') {
+            $('#skillPoint').prepend(
+                '<tr class="' + skillNumber + '" style="background: #7fffd4">' +
+                '<td class="chooseSkill"><select name="' + skillNumber + '" autocomplete="off">' +
+                '<option>付丧神赠送技能</option>' + skillSelect +
+                '</select></td>' +
+                '<td class="chooseSubSkill"><select name="' + skillNumber + '" autocomplete="off" disabled="disabled"></select></td>' +
+                '<td class="minus"><input class="' + skillNumber + '" type="button" value="-"></td>' +
+                '<td class="skillLevel">3</td>' +
+                '<td class="add"><input class="' + skillNumber + '" type="button" value="+"></td>' +
+                '<td><div class="error error_11">请先选择技能</div><div class="error error_12">付丧神赠送技能等级不能低于3级或超过5级</div></td>' +
+                '</tr>'
+            );
+        }
+        else {
+            $('#skillPoint .createSkill').before(
+                '<tr class="' + skillNumber + '">' +
+                '<td class="chooseSkill"><select name="' + skillNumber + '" autocomplete="off">' +
+                '<option></option>' + skillSelect +
+                '</select></td>' +
+                '<td class="chooseSubSkill"><select name="' + skillNumber + '" autocomplete="off" disabled="disabled"></select></td>' +
+                '<td class="minus"><input class="' + skillNumber + '" type="button" value="-"></td>' +
+                '<td class="skillLevel">0</td>' +
+                '<td class="add"><input class="' + skillNumber + '" type="button" value="+"></td>' +
+                '<td><div class="error error_11">请先选择技能</div><div class="error error_12">新建角色技能等级不能低于0级或超过4级</div></td>' +
+                '</tr>'
+            );
+        }
     }
 
     //刷新页面数据
