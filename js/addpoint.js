@@ -198,7 +198,7 @@ $(document).ready(function () {
         },
         resistance : {
             main : '抵抗'
-        }
+        },
         shouting : {
             main : '呼喊'
         },
@@ -488,7 +488,7 @@ $(document).ready(function () {
             changeSkill = 'a';
         }
         //清除错误
-        $('.error_11').css('display', 'none');
+        $('.error').css('display', 'none');
         skillPoint[skillNumber] = {
             name: skillName,
             level: 0
@@ -499,6 +499,7 @@ $(document).ready(function () {
     //加技能点
     $('#skillPoint').on('click', 'input[value="+"]', function () {
         var addSkill = $(this).attr('class');
+        $('.error').css('display', 'none');
         if (skillPoint[addSkill] === undefined) {
             $('tr.' + addSkill + ' .error_11').css('display', 'inline-block');
             return;
@@ -507,9 +508,12 @@ $(document).ready(function () {
             $('tr.' + addSkill + ' .error_12').css('display', 'inline-block');
             return;
         }
+        else if (overSkillPoint - skillSeries2(skillPoint[addSkill].level+1) < 0) {
+            $('.error_14').css('display', 'inline-block');
+            return;
+        }
         else {
             ++skillPoint[addSkill].level;
-            $('.error_06').css('display', 'none');
         }
         OverSkillPoint();
         refreshSkillValue();
@@ -517,6 +521,7 @@ $(document).ready(function () {
     //减技能点
     $('#skillPoint').on('click', 'input[value = "-"]', function () {
         var minusSkill = $(this).attr('class');
+        $('.error').css('display', 'none');
         if (skillPoint[minusSkill] === undefined) {
             $('tr.' + minusSkill + ' .error_11').css('display', 'inline-block');
             return;
@@ -527,7 +532,6 @@ $(document).ready(function () {
         }
         else {
             --skillPoint[minusSkill].level;
-            $('.error_06').css('display', 'none');
         }
         OverSkillPoint();
         refreshSkillValue();
@@ -538,17 +542,7 @@ $(document).ready(function () {
         lastSkill = lastSkill.replace(/skill/, '');
         ++lastSkill;
         lastSkill = 'skill' + lastSkill;
-        $('#skillPoint .createSkill').before(
-            '<tr class="' + lastSkill + '">' +
-            '<td class="chooseSkill"><select name="' + lastSkill + '" autocomplete="off">' +
-            '<option></option><option value="eat">吃饭</option>' +
-            '</select></td>' +
-            '<td class="minus"><input class="' + lastSkill + '" type="button" value="-"></td>' +
-            '<td class="skillLevel">0</td>' +
-            '<td class="add"><input class="' + lastSkill + '" type="button" value="+"></td>' +
-            '<td><div class="error error_11">请先选择技能</div><div class="error error_12">新建角色技能等级不能低于0级或超过4级</div></td>' +
-            '</tr>'
-        );
+        createSkill(lastSkill);
     });
 
     //函数
@@ -588,6 +582,21 @@ $(document).ready(function () {
         });
         overSkillPoint = skillRank[changeSkill] - addSkillPoint;
         $('#overskillPoint').text(overSkillPoint);
+    }
+
+    //添加技能
+    function createSkill(skillNumber) {
+        $('#skillPoint .createSkill').before(
+            '<tr class="' + skillNumber + '">' +
+            '<td class="chooseSkill"><select name="' + skillNumber + '" autocomplete="off">' +
+            '<option></option><option value="eat">吃饭</option>' +
+            '</select></td>' +
+            '<td class="minus"><input class="' + skillNumber + '" type="button" value="-"></td>' +
+            '<td class="skillLevel">0</td>' +
+            '<td class="add"><input class="' + skillNumber + '" type="button" value="+"></td>' +
+            '<td><div class="error error_11">请先选择技能</div><div class="error error_12">新建角色技能等级不能低于0级或超过4级</div></td>' +
+            '</tr>'
+        );
     }
 
     //刷新页面数据
@@ -641,6 +650,17 @@ $(document).ready(function () {
             else {
                 a = a + i;
             }
+        }
+        return a;
+    }
+    //技能每级费点
+    function skillSeries2(Num) {
+        var a = 0;
+        if (Num > 5) {
+            a = 5;
+        }
+        else {
+            a = Num;
         }
         return a;
     }
