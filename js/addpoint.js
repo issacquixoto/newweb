@@ -164,179 +164,176 @@ $(document).ready(function () {
     };
     //技能库
     var skills = {
-        shooting : {
-            main : '射击'
+        shooting: {
+            main: '射击'
         },
-        barrage : {
-            main : '弹幕'
+        barrage: {
+            main: '弹幕'
         },
-        avoid : {
-            main : '回避'
+        avoid: {
+            main: '回避'
         },
-        chaseShooting : {
-            main : '追击'
+        chaseShooting: {
+            main: '追击'
         },
-        shootingWeapons : {
-            main : '射击武器'
+        shootingWeapons: {
+            main: '射击武器'
         },
-        meleeWeapon : {
-            main : '近战武器'
+        meleeWeapon: {
+            main: '近战武器'
         },
-        movement : {
-            main : '运动',
-            flight : '飞行',
-            groundMovement : '地面运动',
-            swimming : '游泳'
+        movement: {
+            main: '运动',
+            flight: '飞行',
+            groundMovement: '地面运动',
+            swimming: '游泳'
         },
-        perception : {
-            main : '感知',
-            vision : '目视',
-            hearing : '聆听',
-            smell : '嗅味',
-            touch : '触摸',
-            fantasy : '感知神秘'
+        perception: {
+            main: '感知',
+            vision: '目视',
+            hearing: '聆听',
+            smell: '嗅味',
+            touch: '触摸',
+            fantasy: '感知神秘'
         },
-        resistance : {
-            main : '抵抗'
+        resistance: {
+            main: '抵抗'
         },
-        shouting : {
-            main : '呼喊'
+        shouting: {
+            main: '呼喊'
         },
-        song : {
-            main : '歌唱'
+        song: {
+            main: '歌唱'
         },
-        instrument : {
-            main : '乐器'
+        instrument: {
+            main: '乐器'
         },
-        dance : {
-            main : '舞蹈'
+        dance: {
+            main: '舞蹈'
         },
-        painting : {
-            main : '绘画'
+        painting: {
+            main: '绘画'
         },
-        carving : {
-            main : '雕刻'
+        carving: {
+            main: '雕刻'
         },
-        doll : {
-            main : '人偶'
+        doll: {
+            main: '人偶'
         },
-        literature : {
-            main : '文学'
+        literature: {
+            main: '文学'
         },
-        tricks : {
-            main : '戏法'
+        tricks: {
+            main: '戏法'
         },
-        divination : {
-            main : '占卜'
+        divination: {
+            main: '占卜'
         },
-        imagination : {
-            main : '想象'
+        imagination: {
+            main: '想象'
         },
-        life : {
-            main : '生活',
-            foodCollection : '食物采集',
-            cook : '料理',
-            housekeeping : '家务',
-            hunting : '狩猎',
-            farming : '农耕'
+        life: {
+            main: '生活',
+            foodCollection: '食物采集',
+            cook: '料理',
+            housekeeping: '家务',
+            hunting: '狩猎',
+            farming: '农耕'
         },
-        work : {
-            main : '工作',
-            woodwork : '木工',
-            masonry : '石工',
-            forged : '锻造',
-            tailor : '裁缝',
-            pottery : '陶艺'
+        work: {
+            main: '工作',
+            woodwork: '木工',
+            masonry: '石工',
+            forged: '锻造',
+            tailor: '裁缝',
+            pottery: '陶艺'
         },
-        gardener : {
-            main : '园艺师'
+        gardener: {
+            main: '园艺师'
         },
-        ninja : {
-            main : '忍术',
-            secret : '隐密',
-            change : '变装',
-            hide : '隐匿',
-            trace : '追迹'
+        ninja: {
+            main: '忍术',
+            secret: '隐密',
+            change: '变装',
+            hide: '隐匿',
+            trace: '追迹'
         },
-        thieves : {
-            main : '盗贼',
-            trap : '陷阱',
-            cipher : '暗号',
-            unlock : '开锁',
-            engraved : '印'
+        thieves: {
+            main: '盗贼',
+            trap: '陷阱',
+            cipher: '暗号',
+            unlock: '开锁',
+            engraved: '印'
         },
-        chemistry : {
-            main : '化学'
+        chemistry: {
+            main: '化学'
         },
-        physics : {
-            main : '物理学'
+        physics: {
+            main: '物理学'
         },
-        psychology : {
-            main : '心理学'
+        psychology: {
+            main: '心理学'
         },
-        medicine : {
-            main : '医学'
+        fantasyKnowledge: {
+            main: '幻想知识',
+            magic: '魔法知识',
+            godSurgery: '神术·阴阳术知识',
+            attribute: '属性知识',
+            monster: '妖怪知识',
+            heritage: '传承·神话知识'
         },
-        fantasyKnowledge : {
-            main : '幻想知识',
-            magic : '魔法知识',
-            godSurgery : '神术·阴阳术知识',
-            attribute : '属性知识',
-            monster : '妖怪知识',
-            heritage : '传承·神话知识'
+        natureKnowledge: {
+            main: '自然知识',
+            animal: '动物知识',
+            plant: '植物知识',
+            insect: '昆虫知识',
+            meteorological: '气象知识',
+            geographical: '地理知识'
         },
-        natureKnowledge : {
-            main : '自然知识',
-            animal : '动物知识',
-            plant : '植物知识',
-            insect : '昆虫知识',
-            meteorological : '气象知识',
-            geographical : '地理知识'
+        anecdoteKnowledge: {
+            main: '逸闻知识'
         },
-        anecdoteKnowledge : {
-            main : '逸闻知识'
+        historyKnowledge: {
+            main: '历史知识'
         },
-        historyKnowledge : {
-            main : '历史知识'
+        martialArtsKnowledge: {
+            main: '武术知识'
         },
-        martialArtsKnowledge : {
-            main : '武术知识'
+        areaKnowledge: {
+            main: '地区知识'
         },
-        areaKnowledge : {
-            main : '地区知识'
+        documentKnowledge: {
+            main: '文献检索'
         },
-        documentKnowledge : {
-            main : '文献检索'
+        japaneseKnowledge: {
+            main: '日语'
         },
-        japaneseKnowledge : {
-            main : '日语'
+        englishKnowledge: {
+            main: '英语'
         },
-        englishKnowledge : {
-            main : '英语'
+        runesKnowledge: {
+            main: '符文'
         },
-        runesKnowledge : {
-            main : '符文'
+        ancientWritings: {
+            main: '古文'
         },
-        ancientWritings : {
-            main : '古文'
+        medical: {
+            main: '医术',
+            knowledge: '医学知识',
+            pharmacy: '药学',
+            firstAid: '急救',
+            surgery: '手术',
+            veterinary: '兽医'
         },
-        medical : {
-            main : '医术',
-            knowledge : '医术知识',
-            pharmacy : '药学',
-            firstAid : '急救',
-            surgery : '手术',
-            veterinary : '兽医'
-        },
-        talk : {
-            main : '交涉',
-            lying : '说谎',
-            business : '商业',
-            breakLies : '识破谎言',
-            etiquette : '礼仪规范',
-            winOver : '笼络',
-            report : '报道',
-            gaze : '凝视'
+        talk: {
+            main: '交涉',
+            lying: '说谎',
+            business: '商业',
+            breakLies: '识破谎言',
+            etiquette: '礼仪规范',
+            winOver: '笼络',
+            report: '报道',
+            gaze: '凝视'
         }
     };
 
@@ -470,7 +467,7 @@ $(document).ready(function () {
     });
 
     //技能触发
-
+    createSkill('skill1');
     //选择技能等级
     $('#skillRank').on('change', function () {
         //导入技能点数
@@ -480,13 +477,31 @@ $(document).ready(function () {
         refreshSkillValue();
     });
     //选择技能
-    $('#skillPoint').on('change', 'select', function () {
+    $('#skillPoint').on('change', '.chooseSkill select', function () {
         var skillNumber = $(this).attr('name');
         var skillName = $(this).val();
+        var subSkillSelect = skills[skillName];
+        var subSkillOption;
+
         //未选等级则默认
         if (changeSkill === undefined) {
             changeSkill = 'a';
         }
+
+        //导入副职业
+        $.each(subSkillSelect, function (key,val) {
+            var a;
+            if (key === 'main'){
+                a = '<option value="' + key + '" selected="selected">' + val + '</option>';
+            }
+            else {
+                a = '<option value="' + key + '">' + val + '</option>';
+            }
+            subSkillOption = subSkillOption + a;
+        });
+
+        $('tr.' + skillNumber + ' .chooseSubSkill select').attr('disabled',false).html(subSkillOption);
+
         //清除错误
         $('.error').css('display', 'none');
         skillPoint[skillNumber] = {
@@ -508,7 +523,7 @@ $(document).ready(function () {
             $('tr.' + addSkill + ' .error_12').css('display', 'inline-block');
             return;
         }
-        else if (overSkillPoint - skillSeries2(skillPoint[addSkill].level+1) < 0) {
+        else if (overSkillPoint - skillSeries2(skillPoint[addSkill].level + 1) < 0) {
             $('.error_14').css('display', 'inline-block');
             return;
         }
@@ -586,11 +601,17 @@ $(document).ready(function () {
 
     //添加技能
     function createSkill(skillNumber) {
+        var skillSelect;
+        $.each(skills, function (key, val) {
+            var a = '<option value="' + key + '">' + val.main + '</option>';
+            skillSelect = skillSelect + a;
+        });
         $('#skillPoint .createSkill').before(
             '<tr class="' + skillNumber + '">' +
             '<td class="chooseSkill"><select name="' + skillNumber + '" autocomplete="off">' +
-            '<option></option><option value="eat">吃饭</option>' +
+            '<option></option>' + skillSelect +
             '</select></td>' +
+            '<td class="chooseSubSkill"><select name="' + skillNumber + '" autocomplete="off" disabled="disabled"></select></td>' +
             '<td class="minus"><input class="' + skillNumber + '" type="button" value="-"></td>' +
             '<td class="skillLevel">0</td>' +
             '<td class="add"><input class="' + skillNumber + '" type="button" value="+"></td>' +
@@ -653,6 +674,7 @@ $(document).ready(function () {
         }
         return a;
     }
+
     //技能每级费点
     function skillSeries2(Num) {
         var a = 0;

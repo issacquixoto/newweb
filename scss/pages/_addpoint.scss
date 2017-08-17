@@ -33,3 +33,8 @@
 #skillRankPoint, #overskillPoint {
     display: inline-block;
 }
+#skillPoint {
+    select {
+        width: 100px;
+    }
+}
