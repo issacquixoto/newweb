@@ -29,6 +29,13 @@
     <option value="d1">人类(D级)</option>
     <option value="d2">妖精(D级)</option>
 </select>
+<label for="attributeRank">特性值</label>
+<select name="attribute" id="attributeRank" autocomplete="off">
+    <option value="a" selected="selected">26(A级)</option>
+    <option value="b">24(B级)</option>
+    <option value="c">22(C级)</option>
+    <option value="d">20(D级)</option>
+</select>
 <label>种族点数</label>
 <div id="raceRankPoint"></div>
 <label>剩余点数</label>
@@ -36,6 +43,7 @@
 <div class="refresh">
     <a href="">重置</a>
 </div>
+<div class="error error_05">请先选择特性值等级</div>
 <div id="otherRaceCorrection">
     <div class="c3Choose">
         <input type="radio" name="c3Choose" value="add1" id="c3Choose1" autocomplete="off"><label

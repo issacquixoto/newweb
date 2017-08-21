@@ -1,7 +1,7 @@
 $(document).ready(function () {
     //赋值
 
-    //种族加点
+    //属性点
     var characterPoint = {
         body: 3,
         sta: 3,
@@ -9,16 +9,16 @@ $(document).ready(function () {
         feel: 3,
         will: 3
     };
-    //技能加点
+    //技能点
     var skillPoint = {
         // skill0: {
         //     name: '',
         //     level: 0
         // }
     };
-    //剩余种族点数
+    //剩余属性点
     var overCharacterPoint;
-    //剩余技能点数
+    //剩余技能点
     var overSkillPoint;
     //种族修正
     var raceCorrection = {};
@@ -28,6 +28,8 @@ $(document).ready(function () {
     var totalCharacterPoint = {};
     //所选种族
     var changeRace;
+    //所选特性值
+    var changeAttribute;
     //所选技能
     var changeSkill;
     //种族等级数据
@@ -154,6 +156,13 @@ $(document).ready(function () {
                 will: -1
             }
         }
+    };
+    //特性点等级
+    var attributeRank = {
+        a : 26,
+        b : 24,
+        c : 22,
+        d : 20
     };
     //技能等级数据
     var skillRank = {
@@ -337,13 +346,11 @@ $(document).ready(function () {
         }
     };
 
-    //种族触发
+    //种族和特性值触发
 
     //选择种族等级
     $('#characterRace').on('change', function () {
-        resetCharacterPoint();
-
-        //导入种族点数
+        //导入种族
         changeRace = $(this).find("option:selected").val();
 
         //导入种族修正
@@ -355,7 +362,7 @@ $(document).ready(function () {
         //清除种族特殊修正radio选择
         cleanChoose();
 
-        //额外修正开关控制
+        //特性值修正控制
         $('#otherRaceCorrection > div').css('display', 'none');
         if (changeRace === 'c3') {
             $('#otherRaceCorrection .c3Choose').css('display', 'block');
@@ -364,10 +371,7 @@ $(document).ready(function () {
             $('#otherRaceCorrection .other01').css('display', 'block');
         }
 
-        //影响技能的种族
-        //付丧神
-        //从战斗和感知以外的技能中选择一个和自己本体的用途有关的技能。免费获得3级，作成人物时可支付消费升到5级。（例如是乐器的话可以是〈唱歌〉或〈乐器：「自己的本体」〉、和自己有关的书籍知识等）
-
+        //技能修正控制
         if (changeRace === 'c3') {
             createSkill('skill0');
         }
@@ -376,11 +380,28 @@ $(document).ready(function () {
             delete skillPoint.skill0;
         }
 
-        OverCharacterPoint();
         OverSkillPoint();
         refreshValue();
     });
-    //加种族属性点
+    //选择特性值等级
+    $('#attributeRank').on('change', function () {
+        resetCharacterPoint();
+
+        //导入种族特性值
+        changeAttribute = $(this).find("option:selected").val();
+
+        //未选种族则默认为吸血鬼
+        if (changeRace === undefined) {
+            raceCorrection = raceRank.a1.correction;
+        }
+
+        //消除警报
+        $('.error').css('display', 'none');
+
+        OverCharacterPoint();
+        refreshValue();
+    });
+    //加特性值
     $('#characterPoint input[value="+"]').on('click', function () {
         var addPoint = $(this).attr('class');
         //属性点点不够的警报
@@ -390,8 +411,11 @@ $(document).ready(function () {
         }
         //未选种族则默认为吸血鬼
         if (changeRace === undefined) {
-            changeRace = 'a1';
             raceCorrection = raceRank.a1.correction;
+        }
+        //未选特性值默认为A级
+        if (changeAttribute === undefined) {
+            changeAttribute = 'a';
         }
         if (characterPoint[addPoint] < 6) {
             ++characterPoint[addPoint];
@@ -405,15 +429,18 @@ $(document).ready(function () {
             $('.' + addPoint + 'Point .error_02').css('display', 'inline-block')
         }
     });
-    //减种族属性点
+    //减特性值
     $('#characterPoint input[value="-"]').on('click', function () {
         var minusPoint = $(this).attr('class');
         //消除点数用完的警报
         $('.error_04').css('display', 'none');
         //未选种族则默认为吸血鬼
         if (changeRace === undefined) {
-            changeRace = 'a1';
             raceCorrection = raceRank.a1.correction;
+        }
+        //未选特性值默认为A级
+        if (changeAttribute === undefined) {
+            changeAttribute = 'a';
         }
         if (characterPoint[minusPoint] > 3) {
             --characterPoint[minusPoint];
@@ -638,17 +665,17 @@ $(document).ready(function () {
         otherRaceCorrection = {};
     }
 
-    //计算剩余种族属性点数
+    //计算剩余种特性值
     function OverCharacterPoint() {
         var addCharacterPoint = 0;
         $.each(characterPoint, function (key, val) {
             addCharacterPoint = addCharacterPoint + val
         });
-        overCharacterPoint = raceRank[changeRace].point - addCharacterPoint;
+        overCharacterPoint = attributeRank[changeAttribute] - addCharacterPoint;
         $('#overRacePoint').text(overCharacterPoint);
     }
 
-    //计算剩余种族技能点数
+    //计算剩余技能点数
     function OverSkillPoint() {
         var addSkillPoint = 0;
         $.each(skillPoint, function (key, val) {
@@ -704,8 +731,8 @@ $(document).ready(function () {
 
     //刷新页面数据
     function refreshValue() {
-        $('#raceRankPoint').text(raceRank[changeRace].point);
-        //属性数值
+        $('#raceRankPoint').text(attributeRank[changeAttribute]);
+        //特性值数值
         $.each(characterPoint, function (key, val) {
             $('.' + key + 'Point .point').html(val);
 
@@ -719,7 +746,7 @@ $(document).ready(function () {
             }
             $('.' + key + 'Point .total').html(totalCharacterPoint[key]);
         });
-        //副属性数值
+        //计算数值
         var subPoint = $('#subCharacterPoint');
         var dpRecover = Math.ceil((totalCharacterPoint.int + totalCharacterPoint.feel) / 3);
         if (dpRecover < 2) {
