@@ -510,8 +510,12 @@ $(document).ready(function () {
     createSkill('skill1');
     //选择技能等级
     $('#skillRank').on('change', function () {
+        resetSkillPoint();
         //导入技能点数
         changeSkill = $(this).find("option:selected").val();
+
+        //消除警报
+        $('.error').css('display', 'none');
 
         OverSkillPoint();
         refreshSkillValue();
@@ -648,7 +652,7 @@ $(document).ready(function () {
 
     //函数
 
-    //重置种族属性点数
+    //重置特性值
     function resetCharacterPoint() {
         characterPoint = {
             'body': 3,
@@ -657,6 +661,14 @@ $(document).ready(function () {
             'feel': 3,
             'will': 3
         }
+    }
+    //重置技能点
+    function resetSkillPoint() {
+        $('#skillPoint tr:not(.createSkill)').remove();
+        createSkill('skill1');
+        $.each(skillPoint, function (key,val) {
+            delete skillPoint[key]
+        })
     }
 
     //清除种族特殊修正radio选择
