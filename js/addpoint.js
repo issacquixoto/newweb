@@ -372,10 +372,12 @@ $(document).ready(function () {
             createSkill('skill0');
         }
         else {
-            $('#skillPoint .skill0').remove()
+            $('#skillPoint .skill0').remove();
+            delete skillPoint.skill0;
         }
 
         OverCharacterPoint();
+        OverSkillPoint();
         refreshValue();
     });
     //加种族属性点
@@ -478,7 +480,6 @@ $(document).ready(function () {
     });
 
     //技能触发
-    createSkill('skill0');
     createSkill('skill1');
     //选择技能等级
     $('#skillRank').on('change', function () {
@@ -558,7 +559,7 @@ $(document).ready(function () {
                 $('tr.' + addSkill + ' .error_11').css('display', 'inline-block');
                 return;
             }
-            else if (skillPoint[addSkill].level >= 4){
+            else if (skillPoint[addSkill].level >= 4) {
                 $('tr.' + addSkill + ' .error_12').css('display', 'inline-block');
                 return;
             }
@@ -653,7 +654,13 @@ $(document).ready(function () {
         $.each(skillPoint, function (key, val) {
             addSkillPoint = addSkillPoint + skillSeries(val.level);
         });
-        overSkillPoint = skillRank[changeSkill] - addSkillPoint;
+        if (skillPoint.skill0 !== undefined) {
+            overSkillPoint = skillRank[changeSkill] - addSkillPoint + 6;
+        }
+        else {
+            overSkillPoint = skillRank[changeSkill] - addSkillPoint;
+        }
+
         $('#overskillPoint').text(overSkillPoint);
     }
 
