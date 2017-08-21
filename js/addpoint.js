@@ -365,16 +365,14 @@ $(document).ready(function () {
         }
 
         //影响技能的种族
-//         付丧神
-//         从战斗和感知以外的技能中选择一个和自己本体的用途有关的技能。免费获得3级，作成人物时可支付消费升到5级。（例如是乐器的话可以是〈唱歌〉或〈乐器：「自己的本体」〉、和自己有关的书籍知识等）
+        //付丧神
+        //从战斗和感知以外的技能中选择一个和自己本体的用途有关的技能。免费获得3级，作成人物时可支付消费升到5级。（例如是乐器的话可以是〈唱歌〉或〈乐器：「自己的本体」〉、和自己有关的书籍知识等）
 
         if (changeRace === 'c3') {
             createSkill('skill0');
-            skillPoint = {
-                skill0: {
-                    level: 3
-                }
-            }
+        }
+        else {
+            $('#skillPoint .skill0').remove()
         }
 
         OverCharacterPoint();
@@ -480,6 +478,7 @@ $(document).ready(function () {
     });
 
     //技能触发
+    createSkill('skill0');
     createSkill('skill1');
     //选择技能等级
     $('#skillRank').on('change', function () {
@@ -518,8 +517,9 @@ $(document).ready(function () {
         //清除错误
         $('.error').css('display', 'none');
         if (skillNumber === 'skill0') {
-            skillPoint[skillNumber] = {
-                name: skillName
+            skillPoint.skill0 = {
+                name: skillName,
+                level: 3
             };
         }
         else {
@@ -537,7 +537,7 @@ $(document).ready(function () {
         $('.error').css('display', 'none');
 
         if (addSkill === 'skill0') {
-            if (skillPoint[addSkill].name === undefined) {
+            if (skillPoint.skill0 === undefined) {
                 $('tr.' + addSkill + ' .error_11').css('display', 'inline-block');
                 return;
             }
@@ -558,7 +558,7 @@ $(document).ready(function () {
                 $('tr.' + addSkill + ' .error_11').css('display', 'inline-block');
                 return;
             }
-            else if (skillPoint[addSkill].level >= 4) {
+            else if (skillPoint[addSkill].level >= 4){
                 $('tr.' + addSkill + ' .error_12').css('display', 'inline-block');
                 return;
             }
@@ -580,7 +580,7 @@ $(document).ready(function () {
         $('.error').css('display', 'none');
 
         if (minusSkill === 'skill0') {
-            if (skillPoint[minusSkill].name === undefined) {
+            if (skillPoint.skill0 === undefined) {
                 $('tr.' + minusSkill + ' .error_11').css('display', 'inline-block');
                 return;
             }
