@@ -1,6 +1,12 @@
 #raceRankPoint, #overRacePoint {
     display: inline-block;
 }
+#skillRankPoint, #overskillPoint {
+    display: inline-block;
+}
+#stuntRankPoint, #overstuntPoint {
+    display: inline-block;
+}
 .error {
     color: red;
     display: none;
@@ -30,10 +36,8 @@
         padding: 0 15px;
     }
 }
-#skillRankPoint, #overskillPoint {
-    display: inline-block;
-}
-#skillPoint {
+
+#skillPoint, #stuntPoint {
     select {
         width: 150px;
     }

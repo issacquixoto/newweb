@@ -16,10 +16,19 @@ $(document).ready(function () {
         //     level: 0
         // }
     };
+    //特技点
+    var stuntPoint = {
+        // skill0: {
+        //     name: '',
+        //     level: 0
+        // }
+    };
     //剩余属性点
     var overCharacterPoint;
     //剩余技能点
     var overSkillPoint;
+    //剩余特技点
+    var overStuntPoint;
     //种族修正
     var raceCorrection = {};
     //额外种族修正
@@ -32,6 +41,8 @@ $(document).ready(function () {
     var changeAttribute;
     //所选技能
     var changeSkill;
+    //所选特技
+    var changeStunt;
     //种族等级数据
     var raceRank = {
         a1: {
@@ -157,7 +168,7 @@ $(document).ready(function () {
             }
         }
     };
-    //特性点等级
+    //特性等级数据
     var attributeRank = {
         a : 26,
         b : 24,
@@ -170,6 +181,13 @@ $(document).ready(function () {
         b: 42,
         c: 34,
         d: 26
+    };
+    //特技等级数据
+    var stuntRank = {
+        a: 30,
+        b: 25,
+        c: 20,
+        d: 15
     };
     //技能库
     var skills = {
@@ -345,6 +363,8 @@ $(document).ready(function () {
             gaze: '凝视'
         }
     };
+    //特技库
+    var stunt = {};
 
     //种族和特性值触发
 
