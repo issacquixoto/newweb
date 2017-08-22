@@ -364,7 +364,148 @@ $(document).ready(function () {
         }
     };
     //特技库
-    var stunt = {};
+    var stunt = {
+        gods : {
+            name : '神术·阴阳术'
+        },
+        surgery : {
+            name : '神术·阴阳术（术式）'
+        },
+        magic : {
+            name : '魔法'
+        },
+        property : {
+            name : '属性使'
+        },
+        sorcery : {
+            name : '妖术',
+            sorceryBullet : '妖弹',
+            vampire : '吸血·吸魂'
+        },
+        sorceryBullet: {
+            name : '妖术（妖弹化）'
+        },
+        exercise : {
+            name : '锻炼'
+        },
+        qigong : {
+            name : '气功'
+            //每级（增加后[气功]等级）x5点
+        },
+        magicItem1 : {
+            name : '魔法道具I'
+        },
+        magicItem2 : {
+            name : '魔法道具II'
+        },
+        potions : {
+            name : '魔药'
+        },
+        animalCommunication : {
+            name : '动物交流',
+            cost : 4
+        },
+        aquatic : {
+            name : '水栖',
+            cost : 2
+        },
+        turned : {
+            name : '变身',
+            cost : 5
+        },
+        spiritualization : {
+            name : '灵体化',
+            cost : 8
+        },
+        darkVision : {
+            name : '黑暗视觉'
+            //每级2点,最高三级
+        },
+        judgeSmall : {
+            name : '被弹判定小',
+            cost : 8
+        },
+        grazeBig : {
+            name : '擦弹判定大',
+            cost : 8
+        },
+        hadouken : {
+            name : '剑闪/波动',
+            cost : 5
+        },
+        highSpeedFlight : {
+            name : '高速飞行'
+            //每级2点
+        },
+        concentration : {
+            name : '集中力',
+            cost : 8
+        },
+        silverWeapon : {
+            name : '纯银武器',
+            cost : 2
+        },
+        magicBag : {
+            name : '魔法袋',
+            cost : 3
+        },
+        magicBook : {
+            name : '魔法书',
+            cost : 5
+        },
+        realThing : {
+            name : '真实之物'
+            //每级+1
+        },
+
+        civilizedWeapon : {
+            name : '文明利器'
+            //特例
+        },
+        addMark : {
+            name : '追加刻符'
+            //每10点+1
+        },
+        addFriend : {
+            name : '增加关系人'
+            //每3点1人或每3点技能点1人
+        },
+        addMoney : {
+            name : '增加财产'
+            //每1点+5円或每1技能点+5円
+        },
+        addHP : {
+            name : '增加HP'
+            //每2点+1
+        },
+        addMP : {
+            name : '增加灵力'
+            //每3点1人或每3点技能点1人
+        },
+        addSC : {
+            name : '增加符卡'
+            //每级+5
+        },
+        house : {
+            name : '别墅',
+            cost : 3
+        },
+        magicHouse : {
+            name : '魔法屋',
+            cost : 5
+        },
+        news : {
+            name : '报社',
+            cost : 10
+        },
+        dolls : {
+            name : '使魔/式神/仆人/人偶/傀儡'
+        },
+        magicWeapon : {
+            name : '魔法武器/利剑/魔法防具'
+        }
+
+    };
 
     //种族和特性值触发
 
