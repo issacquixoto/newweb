@@ -825,83 +825,82 @@ $(document).ready(function () {
         OverStuntPoint();
         refreshStuntValue();
     });
-    //加技能点
-    $('#StuntPoint').on('click', 'input[value="+"]', function () {
-        var addSkill = $(this).attr('class');
+    //选择特技
+    $('#stuntPoint').on('change', '.chooseStunt select', function () {
+        var stuntNumber = $(this).attr('name');
+        var stuntName = $(this).val();
+        var subStuntSelect = stunts[stuntName];
+        var subStuntOption;
+
+        //未选等级则默认
+        if (changeStunt === undefined) {
+            changeStunt = 'a';
+        }
+
+        //导入副职业
+        // $.each(subSkillSelect, function (key, val) {
+        //     var a;
+        //     if (key === 'main') {
+        //         a = '<option value="' + key + '" selected="selected">' + val + '</option>';
+        //     }
+        //     else {
+        //         a = '<option value="' + key + '">' + val + '</option>';
+        //     }
+        //     subSkillOption = subSkillOption + a;
+        // });
+        //$('tr.' + skillNumber + ' .chooseSubSkill select').attr('disabled', false).html(subSkillOption);
+
+        //清除错误
         $('.error').css('display', 'none');
 
-        if (addSkill === 'skill0') {
-            if (skillPoint.skill0 === undefined) {
-                $('tr.' + addSkill + ' .error_11').css('display', 'inline-block');
-                return;
-            }
-            else if (skillPoint[addSkill].level >= 5) {
-                $('tr.' + addSkill + ' .error_12').css('display', 'inline-block');
-                return;
-            }
-            else if (overSkillPoint - skillSeries2(skillPoint[addSkill].level + 1) < 0) {
-                $('.error_14').css('display', 'inline-block');
-                return;
-            }
-            else {
-                ++skillPoint[addSkill].level;
-            }
-        }
-        else {
-            if (skillPoint[addSkill] === undefined) {
-                $('tr.' + addSkill + ' .error_11').css('display', 'inline-block');
-                return;
-            }
-            else if (skillPoint[addSkill].level >= 4) {
-                $('tr.' + addSkill + ' .error_12').css('display', 'inline-block');
-                return;
-            }
-            else if (overSkillPoint - skillSeries2(skillPoint[addSkill].level + 1) < 0) {
-                $('.error_14').css('display', 'inline-block');
-                return;
-            }
-            else {
-                ++skillPoint[addSkill].level;
-            }
-        }
+        stuntPoint[stuntNumber] = {
+            name: stuntName,
+            level: 0
+        };
 
-        OverSkillPoint();
-        refreshSkillValue();
+        OverStuntPoint();
+        refreshStuntValue();
     });
-    //减技能点
-    $('#StuntPoint').on('click', 'input[value = "-"]', function () {
-        var minusSkill = $(this).attr('class');
+    //加特技点
+    $('#stuntPoint').on('click', 'input[value="+"]', function () {
+        var addStunt = $(this).attr('class');
+
         $('.error').css('display', 'none');
 
-        if (minusSkill === 'skill0') {
-            if (skillPoint.skill0 === undefined) {
-                $('tr.' + minusSkill + ' .error_11').css('display', 'inline-block');
-                return;
-            }
-            else if (skillPoint[minusSkill].level <= 3) {
-                $('tr.' + minusSkill + ' .error_12').css('display', 'inline-block');
-                return;
-            }
-            else {
-                --skillPoint[minusSkill].level;
-            }
+        if (stuntPoint[addStunt] === undefined) {
+            $('tr.' + addStunt + ' .error_21').css('display', 'inline-block');
+            return;
+        }
+        else if (stuntPoint[addStunt].level >= 4) {
+            $('tr.' + addStunt + ' .error_22').css('display', 'inline-block');
+            return;
         }
         else {
-            if (skillPoint[minusSkill] === undefined) {
-                $('tr.' + minusSkill + ' .error_11').css('display', 'inline-block');
-                return;
-            }
-            else if (skillPoint[minusSkill].level <= 0) {
-                $('tr.' + minusSkill + ' .error_12').css('display', 'inline-block');
-                return;
-            }
-            else {
-                --skillPoint[minusSkill].level;
-            }
+            ++stuntPoint[addStunt].level;
         }
 
-        OverSkillPoint();
-        refreshSkillValue();
+        OverStuntPoint();
+        refreshStuntValue();
+    });
+    //减特技点
+    $('#stuntPoint').on('click', 'input[value = "-"]', function () {
+        var minusStunt = $(this).attr('class');
+        $('.error').css('display', 'none');
+
+        if (stuntPoint[minusStunt] === undefined) {
+            $('tr.' + minusStunt + ' .error_21').css('display', 'inline-block');
+            return;
+        }
+        else if (stuntPoint[minusStunt].level <= 0) {
+            $('tr.' + minusStunt + ' .error_22').css('display', 'inline-block');
+            return;
+        }
+        else {
+            --stuntPoint[minusStunt].level;
+        }
+
+        OverStuntPoint();
+        refreshStuntValue();
     });
     //添加特技
     $('#createStunt').on('click', function () {
@@ -1093,10 +1092,10 @@ $(document).ready(function () {
     //刷新特技数据
     function refreshStuntValue() {
         $('#stuntRankPoint').text(stuntRank[changeStunt]);
-        //技能等级
-        // $.each(stuntPoint, function (key, val) {
-        //     $('tr.' + key + ' .skillLevel').html(val.level)
-        // });
+        //特技等级
+        $.each(stuntPoint, function (key, val) {
+            $('tr.' + key + ' .stuntLevel').html(val.level)
+        });
     }
 
     //技能等级费点
