@@ -170,10 +170,10 @@ $(document).ready(function () {
     };
     //特性等级数据
     var attributeRank = {
-        a : 26,
-        b : 24,
-        c : 22,
-        d : 20
+        a: 26,
+        b: 24,
+        c: 22,
+        d: 20
     };
     //技能等级数据
     var skillRank = {
@@ -365,144 +365,134 @@ $(document).ready(function () {
     };
     //特技库
     var stunts = {
-        gods : {
-            name : '神术·阴阳术'
+        gods: {
+            name: '神术·阴阳术'
         },
-        surgery : {
-            name : '神术·阴阳术（术式）'
+        surgery: {
+            name: '神术·阴阳术（术式）'
         },
-        magic : {
-            name : '魔法'
+        magic: {
+            name: '魔法'
         },
-        property : {
-            name : '属性使'
+        property: {
+            name: '属性使'
         },
-        sorcery : {
-            name : '妖术'
+        sorcery: {
+            name: '妖术'
         },
-        fairyPower : {
-            name : '妖术'
+        fairyPower: {
+            name: '妖术'
         },
         sorceryBullet: {
-            name : '妖术（妖弹化）'
+            name: '妖术（妖弹化）'
         },
-        exercise : {
-            name : '锻炼'
+        exercise: {
+            name: '锻炼'
         },
-        qigong : {
-            name : '气功'
-            //每级（增加后[气功]等级）x5点
+        qigong: {
+            name: '气功'
         },
-        magicItem1 : {
-            name : '魔法道具I'
+        magicItem1: {
+            name: '魔法道具I'
         },
-        magicItem2 : {
-            name : '魔法道具II'
+        magicItem2: {
+            name: '魔法道具II'
         },
-        potions : {
-            name : '魔药'
+        potions: {
+            name: '魔药'
         },
-        animalCommunication : {
-            name : '动物交流',
-            cost : 4
+        animalCommunication: {
+            name: '动物交流',
+            cost: 4
         },
-        aquatic : {
-            name : '水栖',
-            cost : 2
+        aquatic: {
+            name: '水栖',
+            cost: 2
         },
-        turned : {
-            name : '变身',
-            cost : 5
+        turned: {
+            name: '变身',
+            cost: 5
         },
-        spiritualization : {
-            name : '灵体化',
-            cost : 8
+        spiritualization: {
+            name: '灵体化',
+            cost: 8
         },
-        darkVision : {
-            name : '黑暗视觉'
-            //每级2点,最高三级
+        darkVision: {
+            name: '黑暗视觉'
         },
-        judgeSmall : {
-            name : '被弹判定小',
-            cost : 8
+        judgeSmall: {
+            name: '被弹判定小',
+            cost: 8
         },
-        grazeBig : {
-            name : '擦弹判定大',
-            cost : 8
+        grazeBig: {
+            name: '擦弹判定大',
+            cost: 8
         },
-        hadouken : {
-            name : '剑闪/波动',
-            cost : 5
+        hadouken: {
+            name: '剑闪/波动',
+            cost: 5
         },
-        highSpeedFlight : {
-            name : '高速飞行'
-            //每级2点
+        highSpeedFlight: {
+            name: '高速飞行'
         },
-        concentration : {
-            name : '集中力',
-            cost : 8
+        concentration: {
+            name: '集中力',
+            cost: 8
         },
-        silverWeapon : {
-            name : '纯银武器',
-            cost : 2
+        silverWeapon: {
+            name: '纯银武器',
+            cost: 2
         },
-        magicBag : {
-            name : '魔法袋',
-            cost : 3
+        magicBag: {
+            name: '魔法袋',
+            cost: 3
         },
-        magicBook : {
-            name : '魔法书',
-            cost : 5
+        magicBook: {
+            name: '魔法书',
+            cost: 5
         },
-        realThing : {
-            name : '真实之物'
-            //每级+1
+        realThing: {
+            name: '真实之物'
         },
-        civilizedWeapon : {
-            name : '文明利器'
+        civilizedWeapon: {
+            name: '文明利器'
             //特例
         },
-        addMark : {
-            name : '追加刻符'
-            //每10点+1
+        addMark: {
+            name: '追加刻符'
         },
-        addFriend : {
-            name : '增加关系人'
-            //每3点1人或每3点技能点1人
+        addFriend: {
+            name: '增加关系人'
         },
-        addMoney : {
-            name : '增加财产'
-            //每1点+5円或每1技能点+5円
+        addMoney: {
+            name: '增加财产'
         },
-        addHP : {
-            name : '增加HP'
-            //每2点+1
+        addHP: {
+            name: '增加HP'
         },
-        addMP : {
-            name : '增加灵力'
-            //每3点1人或每3点技能点1人
+        addMP: {
+            name: '增加灵力'
         },
-        addSC : {
-            name : '增加符卡'
-            //每级+5
+        addSC: {
+            name: '增加符卡'
         },
-        house : {
-            name : '别墅',
-            cost : 3
+        house: {
+            name: '别墅',
+            cost: 3
         },
-        magicHouse : {
-            name : '魔法屋',
-            cost : 5
+        magicHouse: {
+            name: '魔法屋',
+            cost: 5
         },
-        news : {
-            name : '报社',
-            cost : 10
+        news: {
+            name: '报社',
+            cost: 10
         },
-        dolls : {
-            name : '使魔/式神/仆人/人偶/傀儡'
+        dolls: {
+            name: '使魔/式神/仆人/人偶/傀儡'
         },
-        magicWeapon : {
-            name : '魔法武器/利剑/魔法防具'
+        magicWeapon: {
+            name: '魔法武器/利剑/魔法防具'
         }
 
     };
@@ -928,7 +918,7 @@ $(document).ready(function () {
     function resetSkillPoint() {
         $('#skillPoint tr:not(.createSkill)').remove();
         createSkill('skill1');
-        $.each(skillPoint, function (key,val) {
+        $.each(skillPoint, function (key, val) {
             delete skillPoint[key]
         })
     }
@@ -1124,5 +1114,91 @@ $(document).ready(function () {
             a = Num;
         }
         return a;
+    }
+
+    //神术阴阳术魔法每级费点
+    function magicSeries(Num) {
+        var a = 0;
+        if (Num > 5) {
+            a = 25;
+        }
+        else {
+            a = Num * 5;
+        }
+        return a;
+    }
+
+    //术式每级费点
+    function magicSeries2(Num) {
+        var a = 0;
+        if (Num > 5) {
+            a = 15;
+        }
+        else {
+            a = Num * 3;
+        }
+        return a;
+    }
+
+    //属性使每级费点
+    function propertySeries(Num) {
+        var a = 0;
+        if (Num > 5) {
+            a = 20;
+        }
+        else {
+            a = Num * 4;
+        }
+        return a;
+    }
+
+    //妖术妖力锻炼每级费点
+    function sorcerySeries(Num) {
+        var a = 0;
+        if (Num = 1) {
+            a = 1
+        }
+        else if (Num > 7) {
+            a = 12;
+        }
+        else {
+            a = (Num - 1) * 2;
+        }
+        return a;
+    }
+
+    //妖弹化每级费点
+    function sorcerySeries2(Num) {
+        var a = 0;
+        if (Num = 1) {
+            a = 2
+        }
+        else if (Num > 7) {
+            a = 13;
+        }
+        else {
+            a = (Num * 2) - 1;
+        }
+        return a;
+    }
+
+    //刻符
+    function tenfold(Num) {
+        return Num * 10;
+    }
+
+    //气功、SC
+    function quintuple(Num) {
+        return Num * 5;
+    }
+
+    //关系人、MP
+    function triple(Num) {
+        return Num * 3;
+    }
+
+    //黑暗视觉、高速飞行、HP
+    function double(Num) {
+        return Num * 2;
     }
 });
