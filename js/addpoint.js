@@ -364,7 +364,7 @@ $(document).ready(function () {
         }
     };
     //特技库
-    var stunt = {
+    var stunts = {
         gods : {
             name : '神术·阴阳术'
         },
@@ -378,9 +378,10 @@ $(document).ready(function () {
             name : '属性使'
         },
         sorcery : {
-            name : '妖术',
-            sorceryBullet : '妖弹',
-            vampire : '吸血·吸魂'
+            name : '妖术'
+        },
+        fairyPower : {
+            name : '妖术'
         },
         sorceryBullet: {
             name : '妖术（妖弹化）'
@@ -457,7 +458,6 @@ $(document).ready(function () {
             name : '真实之物'
             //每级+1
         },
-
         civilizedWeapon : {
             name : '文明利器'
             //特例
@@ -724,7 +724,7 @@ $(document).ready(function () {
         OverSkillPoint();
         refreshSkillValue();
     });
-    //加技能点
+    //加特技点
     $('#skillPoint').on('click', 'input[value="+"]', function () {
         var addSkill = $(this).attr('class');
         $('.error').css('display', 'none');
@@ -767,7 +767,7 @@ $(document).ready(function () {
         OverSkillPoint();
         refreshSkillValue();
     });
-    //减技能点
+    //减特技点
     $('#skillPoint').on('click', 'input[value = "-"]', function () {
         var minusSkill = $(this).attr('class');
         $('.error').css('display', 'none');
@@ -811,6 +811,107 @@ $(document).ready(function () {
         createSkill(lastSkill);
     });
 
+    //特技触发
+    createStunt('stunt1');
+    //选择特技等级
+    $('#stuntRank').on('change', function () {
+        resetStuntPoint();
+        //导入技能点数
+        changeStunt = $(this).find("option:selected").val();
+
+        //消除警报
+        $('.error').css('display', 'none');
+
+        OverStuntPoint();
+        refreshStuntValue();
+    });
+    //加技能点
+    $('#StuntPoint').on('click', 'input[value="+"]', function () {
+        var addSkill = $(this).attr('class');
+        $('.error').css('display', 'none');
+
+        if (addSkill === 'skill0') {
+            if (skillPoint.skill0 === undefined) {
+                $('tr.' + addSkill + ' .error_11').css('display', 'inline-block');
+                return;
+            }
+            else if (skillPoint[addSkill].level >= 5) {
+                $('tr.' + addSkill + ' .error_12').css('display', 'inline-block');
+                return;
+            }
+            else if (overSkillPoint - skillSeries2(skillPoint[addSkill].level + 1) < 0) {
+                $('.error_14').css('display', 'inline-block');
+                return;
+            }
+            else {
+                ++skillPoint[addSkill].level;
+            }
+        }
+        else {
+            if (skillPoint[addSkill] === undefined) {
+                $('tr.' + addSkill + ' .error_11').css('display', 'inline-block');
+                return;
+            }
+            else if (skillPoint[addSkill].level >= 4) {
+                $('tr.' + addSkill + ' .error_12').css('display', 'inline-block');
+                return;
+            }
+            else if (overSkillPoint - skillSeries2(skillPoint[addSkill].level + 1) < 0) {
+                $('.error_14').css('display', 'inline-block');
+                return;
+            }
+            else {
+                ++skillPoint[addSkill].level;
+            }
+        }
+
+        OverSkillPoint();
+        refreshSkillValue();
+    });
+    //减技能点
+    $('#StuntPoint').on('click', 'input[value = "-"]', function () {
+        var minusSkill = $(this).attr('class');
+        $('.error').css('display', 'none');
+
+        if (minusSkill === 'skill0') {
+            if (skillPoint.skill0 === undefined) {
+                $('tr.' + minusSkill + ' .error_11').css('display', 'inline-block');
+                return;
+            }
+            else if (skillPoint[minusSkill].level <= 3) {
+                $('tr.' + minusSkill + ' .error_12').css('display', 'inline-block');
+                return;
+            }
+            else {
+                --skillPoint[minusSkill].level;
+            }
+        }
+        else {
+            if (skillPoint[minusSkill] === undefined) {
+                $('tr.' + minusSkill + ' .error_11').css('display', 'inline-block');
+                return;
+            }
+            else if (skillPoint[minusSkill].level <= 0) {
+                $('tr.' + minusSkill + ' .error_12').css('display', 'inline-block');
+                return;
+            }
+            else {
+                --skillPoint[minusSkill].level;
+            }
+        }
+
+        OverSkillPoint();
+        refreshSkillValue();
+    });
+    //添加特技
+    $('#createStunt').on('click', function () {
+        var lastStunt = $('#stuntPoint tr:nth-last-of-type(2)').attr('class');
+        lastStunt = lastStunt.replace(/stunt/, '');
+        ++lastStunt;
+        lastStunt = 'skill' + lastStunt;
+        createStunt(lastStunt);
+    });
+
     //函数
 
     //重置特性值
@@ -823,6 +924,7 @@ $(document).ready(function () {
             'will': 3
         }
     }
+
     //重置技能点
     function resetSkillPoint() {
         $('#skillPoint tr:not(.createSkill)').remove();
@@ -830,6 +932,15 @@ $(document).ready(function () {
         $.each(skillPoint, function (key,val) {
             delete skillPoint[key]
         })
+    }
+
+    //重置特技点
+    function resetStuntPoint() {
+        // $('#skillPoint tr:not(.createSkill)').remove();
+        // createSkill('skill1');
+        // $.each(skillPoint, function (key,val) {
+        //     delete skillPoint[key]
+        // })
     }
 
     //清除种族特殊修正radio选择
@@ -848,7 +959,7 @@ $(document).ready(function () {
         $('#overRacePoint').text(overCharacterPoint);
     }
 
-    //计算剩余技能点数
+    //计算剩余技能点
     function OverSkillPoint() {
         var addSkillPoint = 0;
         $.each(skillPoint, function (key, val) {
@@ -862,6 +973,21 @@ $(document).ready(function () {
         }
 
         $('#overskillPoint').text(overSkillPoint);
+    }
+
+    //计算剩余特技点
+    function OverStuntPoint() {
+        var addStuntPoint = 0;
+        // $.each(skillPoint, function (key, val) {
+        //     addSkillPoint = addSkillPoint + skillSeries(val.level);
+        // });
+        // if (skillPoint.skill0 !== undefined) {
+        //     overSkillPoint = skillRank[changeSkill] - addSkillPoint + 6;
+        // }
+        // else {
+        //     overSkillPoint = skillRank[changeSkill] - addSkillPoint;
+        // }
+        //$('#overskillPoint').text(overSkillPoint);
     }
 
     //添加技能
@@ -902,6 +1028,29 @@ $(document).ready(function () {
         }
     }
 
+    //添加特技
+    function createStunt(StuntNumber) {
+        var stuntSelect;
+        $.each(stunts, function (key, val) {
+            var a = '<option value="' + key + '">' + val.name + '</option>';
+            stuntSelect = stuntSelect + a;
+        });
+        var stuntHead = '<tr class="' + StuntNumber + '">' +
+            '<td class="chooseStunt"><select name="' + StuntNumber + '" autocomplete="off">' +
+            '<option></option>' + stuntSelect;
+
+        $('#stuntPoint .createStunt').before(
+            stuntHead +
+            '</select></td>' +
+            '<td class="chooseSubStunt"><select name="' + StuntNumber + '" autocomplete="off" disabled="disabled"></select></td>' +
+            '<td class="minus"><input class="' + StuntNumber + '" type="button" value="-"></td>' +
+            '<td class="stuntLevel">0</td>' +
+            '<td class="add"><input class="' + StuntNumber + '" type="button" value="+"></td>' +
+            '<td><div class="error error_21">请先选择能力或特技</div><div class="error error_22">新建角色特技等级不能低于0级或超过4级</div></td>' +
+            '</tr>'
+        );
+    }
+
     //刷新页面数据
     function refreshValue() {
         $('#raceRankPoint').text(attributeRank[changeAttribute]);
@@ -939,6 +1088,15 @@ $(document).ready(function () {
         $.each(skillPoint, function (key, val) {
             $('tr.' + key + ' .skillLevel').html(val.level)
         });
+    }
+
+    //刷新特技数据
+    function refreshStuntValue() {
+        $('#stuntRankPoint').text(stuntRank[changeStunt]);
+        //技能等级
+        // $.each(stuntPoint, function (key, val) {
+        //     $('tr.' + key + ' .skillLevel').html(val.level)
+        // });
     }
 
     //技能等级费点
